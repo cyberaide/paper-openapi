@@ -47,7 +47,7 @@ in them. Fig. 3 showcases our automated AI service workflow.
 *Fig 2. High-level overview of the benchmark test sequence.*
 
 
-![This figure shows the benchmark results between AWS, Azure, and Google. As the similar VMs are used the time is similar.](images/ai_service_workflow_runtime.pdf})
+![This figure shows the benchmark results between AWS, Azure, and Google. As the similar VMs are used the time is similar.](images/ai_service_workflow_runtime.pdf)
 
 *Fig 3. Comparison of the performance of Eigenface SVM algorithm on various clouds auto-generated from cloudmesh-openapi.*
 
@@ -94,7 +94,7 @@ thank the NIST NBDIF working group for their input.
    AI Services G. von Laszewski, A. Orlowski, R. H. Otten,
    R. Markowitz, S. Gandhi, A. Chai, C. Wilson, and G. C. Fox,
    W. L. Chang
-   \url{https://github.com/laszewski/laszewski.github.io/raw/master/papers/vonLaszewski-openapi.pdf}
+   <https://github.com/laszewski/laszewski.github.io/raw/master/papers/vonLaszewski-openapi.pdf>
 
 ## Contact
 
