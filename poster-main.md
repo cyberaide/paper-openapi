@@ -47,7 +47,7 @@ in them. Fig. 3 showcases our automated AI service workflow.
 *Fig 2. High-level overview of the benchmark test sequence.*
 
 
-![This figure shows the benchmark results between AWS, Azure, and Google. As the similar VMs are used the time is similar.](images/ai_service_workflow_runtime.pdf)
+![This figure shows the benchmark results between AWS, Azure, and Google. As the similar VMs are used the time is similar.](images/ai_service_workflow_runtime.png)
 
 *Fig 3. Comparison of the performance of Eigenface SVM algorithm on various clouds auto-generated from cloudmesh-openapi.*
 
