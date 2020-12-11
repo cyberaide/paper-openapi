@@ -32,7 +32,7 @@ apply it, which domain scientists may not be interested in but would
 be keen on reusing without needing to know the details.
 
 
-![This figure shows the two layers of the Architecture. One is the IaaS Layer, the other is the openapi layer.](images/openapi-arch-new-2.pdf)
+![This figure shows the two layers of the Architecture. One is the IaaS Layer, the other is the openapi layer.](images/openapi-arch-new-2.png)
 
 *Fig 1. Layered architecture of the cloudmesh Open\-API framework.*
 
@@ -42,7 +42,7 @@ input to the generator. These functions can have AI services embedded
 in them. Fig. 3 showcases our automated AI service workflow.
 
 
-![This figure shows a sequence of processes between remote client, download data, train, upload, and predict.](images/architecture-openapi-1.pdf)
+![This figure shows a sequence of processes between remote client, download data, train, upload, and predict.](images/architecture-openapi-1.png)
 
 *Fig 2. High-level overview of the benchmark test sequence.*
 
