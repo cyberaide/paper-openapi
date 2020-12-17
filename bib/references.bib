@@ -3,13 +3,34 @@
 % yaml
 % futuregrid < see gergor
 
+@misc{las-20-ai-rest,
+title={Using GAS for Speedy Generation of Hybrid Multi-Cloud Auto Generated AI Services},
+  author = {von Laszewski, Gregor and
+  Anthony Orlowski and
+  Richard H. Otten and
+  Reilly Markowitz and
+  Sunny Gandhi and
+  Adam Chai and
+  Geoffrey C. Fox and
+  Wo L. Chang}
+  howpublished={UROC},
+  note={Indiana University}
+  month=dec,
+  year={2020}
+}
 
-@{las-20-ai-rest,
-author
-
+@misc{las-uroc-20,
+    title={Towards Automatically Generated Hybrid Multi-Cloud AI Services},
+    author={von Laszewski, Gregor and 
+            Anthony Orlowski and Richard Otten and Adam Chai and Reilly Markowitz and Sunny Gandhi and Caleb Wilson},
+    howpublished={UROC},
+    note={Indiana University}
+    month=dec,
+    year={2020}
 }
 
 @misc{www-python-requests,
+    author={TODO},
 	title = {{Requests: HTTP for Humans}},
 	year = 2020,
 	month = dec,
@@ -182,14 +203,13 @@ series = {TG '11}
 
 @INPROCEEDINGS{faces-data,
   author =	 {G. B. {Huang} and V. {Jain} and E. {Learned-Miller}},
-  booktitle =	 {2007 IEEE 11th International Conference on Computer
-                  Vision},
+  booktitle =	 {2007 IEEE 11th International Conference on Computer Vision},
   title =	 {Unsupervised Joint Alignment of Complex Images},
+  publisher = {IEEE},
   year =	 2007,
   pages =	 {1-8},
   doi =		 {10.1109/ICCV.2007.4408858},
-  url =
-                  {http://vis-www.cs.umass.edu/papers/iccv07alignment.pdf}
+  url = {http://vis-www.cs.umass.edu/papers/iccv07alignment.pdf}
 }
 
 @Manual{cloudmesh-manual,
@@ -224,8 +244,8 @@ series = {TG '11}
 @misc{openapi-2,
   key =		 {OpenAPI},
   title =	 {OpenAPI-Specification 2.0},
-  url =
-                  {https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md},
+  url = {https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md},
+  author = {Darrel Miller and Jason Harmon and Jeremy Whitlock and Kris Hahn and Marsh Gardiner and Mike Ralphson and Rob Dolin and Ron Ratovsky and Tony Tam},
   month =	 dec,
   year =	 2020,
 }
@@ -234,6 +254,7 @@ series = {TG '11}
   key =		 {OpenAPI},
   title =	 {OpenAPI-Specification 3.0.3},
   url =		 {https://github.com/OAI/OpenAPI-Specification/},
+  author = {Darrel Millerand Jason Harmon and Jeremy Whitlock and Kris Hahn and Marsh Gardiner and Mike Ralphson and Rob Dolin and Ron Ratovsky and Tony Tam},
   month =	 dec,
   year =	 2020,
 }
@@ -241,8 +262,8 @@ series = {TG '11}
 @misc{raml-1,
   key =		 {RAML},
   title =	 {RAML Version 1.0: RESTful API Modeling Language},
-  url =
-                  {https://github.com/raml-org/raml-spec/blob/master/versions/raml-10/raml-10.md},
+  url = {https://github.com/raml-org/raml-spec/blob/master/versions/raml-10/raml-10.md},
+  author = {Jonathan Stoikovitch, Uri Sarid, et al.},
   month =	 jun,
   year =	 2019,
 }
@@ -250,6 +271,7 @@ series = {TG '11}
 @online{www-flask-restful,
 author = {Kevin Burke and Kyle Conroy and Ryan Horn and Frank Stratton and Guillaume Binet},
 title = {Flask-RESTful — Flask-RESTful 0.3.8 Documentation},
+organization = {The Pallets Projects},
 url = {https://flask-restful.readthedocs.io/en/latest/},
 month = dec,
 year = 2020,
@@ -258,6 +280,7 @@ year = 2020,
 @misc{www-django-rest,
   key =		 {django},
   title =	 {Django REST Framework},
+  author = {Tom Christie and Xavier Ordoquy and Carlton Gibson and Kevin Brown and Jose Padilla},
   url =		 {https://www.django-rest-framework.org/},
   month =	 dec,
   year =	 2020,
@@ -267,6 +290,7 @@ year = 2020,
   key =		 {openapi},
   title =	 {OpenAPI.Tools},
   url =		 {https://openapi.tools/},
+  authors = {Matt Trask, Mike Ralphson, Keshav Vasudevan, et al.},
   month =	 dec,
   year =	 2020,
 }
@@ -320,8 +344,7 @@ year = 2020,
   title =	 {Cloud Computing},
   publisher =	 {Indiana University},
   year =	 2020,
-  url =
-                  {https://cloudmesh-community.github.io/pub//vonLaszewski-cloud.pdf}
+  url = {https://cloudmesh-community.github.io/pub//vonLaszewski-cloud.pdf}
 }
 
 @misc{mlperf,
@@ -516,6 +539,7 @@ year = 2020,
 
 @Misc{www-openStack,
   title =	 {OpenStack},
+  author = {Rackspace Hosting, NASA},
   howpublished = {Web Page},
   key =		 {OpenStack},
   url =		 {https://www.openstack.org/},
@@ -526,8 +550,8 @@ year = 2020,
 @Misc{openapi-tools,
   title =	 {OpenAPI Tools},
   key =		 {openapi-tools},
-  url =
-                  {https://github.com/OAI/OpenAPI-Specification/blob/master/IMPLEMENTATIONS.md},
+  url ={https://github.com/OAI/OpenAPI-Specification/blob/master/IMPLEMENTATIONS.md},
+  authors = {Darrel Miller, Jason Harmon, Jeremy Whitlock, Kris Hahn, Marsh Gardiner, Mike Ralphson, Rob Dolin, Ron Ratovsky, Tony Tam},
   month =	 dec,
   year =	 2020,
 }
@@ -704,8 +728,7 @@ year = 2020,
 
 @Manual{las-handbook,
   title =	 {Handbook of Clouds and Big Data},
-  author =	 {Gregor von Laszewski and Geoffrey C. Fox and Judy
-                  Qiu},
+  author =	 {Gregor von Laszewski and Geoffrey C. Fox and Judy Qiu},
   organization = {Indiana University},
   address =	 {Bloomington, IN 47408},
   edition =	 2,
@@ -718,6 +741,7 @@ year = 2020,
 @Misc{chameleon-cloud,
   key =		 {chameleon},
   title =	 {Chameleon Cloud},
+  author =	 {Kate Keahey and Jason Anderson and Haryadi S. Gunawi and Joe Mambretti and Paul Ruth and Dan Stanzione},
   howpublished = {Web Page},
   url =		 {http://chameleoncloud.org},
   month =	 dec,
@@ -735,6 +759,7 @@ year = 2020,
 @Misc{bigdata-stack-2,
   key =		 {Big Data Analytics Stack},
   title =	 {Big Data Analytics Stack},
+  author =	 {Badi Abdul-Wahid},
   url =		 {https://github.com/cloudmesh/big-data-stack},
   month =	 dec,
   year =	 2020,
@@ -743,6 +768,7 @@ year = 2020,
 @Misc{bigdata-stack-1,
   key =		 {Big Data Analytics Stack},
   title =	 {Big Data Analytics Stack},
+  author =	 {Badi Abdul-Wahid, Augustine Joseph, Gregor von Laszewski and Srivatsav Kandagatla},
   url =		 {https://github.com/futuresystems/big-data-stack},
   month =	 dec,
   year =	 2020,
@@ -757,8 +783,9 @@ year = 2020,
 }
 
 @misc{www-google,
-    key =		 {Cloud Computing Services | Google Cloudl},
+    key =		 {Cloud Computing Services | Google Cloud},
 	title = {Cloud Computing Services | Google Cloud},
+	author = {{Google Staff}},
 	howpublished = {Web Page},
 	url = {https://cloud.google.com},
 	month = dec,
