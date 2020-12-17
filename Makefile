@@ -50,7 +50,7 @@ flatzip: clean
 	zip -x "*.git*" "*bin*" "*zip" "*.md" "Makefile" -r $(FILENAME).zip .
 
 publish:
-	cp $(FILENAME).pdf ../../laszewski/laszewski.github.io/papers/
-	cd ../../laszewski/laszewski.github.io/papers; git add $(FILENAME).pdf
-	cd ../../laszewski/laszewski.github.io/papers; git commit -m "update $(FILENAME)" $(FILENAME).pdf
-	cd ../../laszewski/laszewski.github.io/papers; git push
+	cp $(FILENAME).pdf ../../../laszewski/laszewski.github.io/papers/
+	cd ../../../laszewski/laszewski.github.io/papers; git add $(FILENAME).pdf
+	cd ../../../laszewski/laszewski.github.io/papers; git commit -m "update $(FILENAME)" $(FILENAME).pdf
+	cd ../../../laszewski/laszewski.github.io/papers; git push
