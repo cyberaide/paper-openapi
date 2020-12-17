@@ -1,9 +1,10 @@
 \documentclass[letter,10pt]{article}
 
+\usepackage[tagged]{accessibility}
+
 \usepackage[margin=1cm,landscape]{geometry}
 
 \usepackage{multicol}
-\usepackage{lipsum}% dummy text
 \usepackage{tikz,lipsum,lmodern}
 \usepackage[most]{tcolorbox}
 
@@ -30,7 +31,6 @@
 }
 
 \begin{document}
-%\maketitle
 
 \vspace{-3.5cm}
 
@@ -66,12 +66,11 @@ $*$UROC Students \hfill }
 \makeatother
 
 \section*{Introduction.}
-Data scientists need to develop reusable AI services that can be shared with their colleagues. Typically they lack the expertise to provide such services due to the steep learning curve. 
-We developed a sophisticated but easy to use framework that takes a regular Python function (which data scientists know how to do) and converts it automatically into a secure REST service which adheres to OpenAPI specifications that can be reused in the ecosystem of cloud services. We used this framework to create several AI-based REST services to showcase the approach's validity. 
+Data scientists need to develop reusable AI services that can be shared with their colleagues. Typically they lack the expertise to provide such services due to the steep learning curve. We developed a sophisticated but easy to use framework that takes a regular Python function (which data scientists know how to do) and converts it automatically into a secure REST service which adheres to OpenAPI specifications that can be reused in the ecosystem of cloud services. We used this framework to create several AI-based REST services to showcase the approach's validity.
 
 \vspace{-12pt}
 \section*{Architecture.}
-We based our architecture on cloudmesh, an open-source hybrid multicloud toolkit. We integrated a new component that provides data scientists with the ability to automatically generate these services (see Fig. 1). One of the most important aspects of generating REST services is language independence. For this reason, we use the OpenAPI Specification. This specification defines a standard, and language-agnostic interface to REST APIs. Although the concept of REST is easy to understand, a significant amount of expertise is needed to apply it, which domain scientists may not be interested in but would be keen on reusing without needing to know the details. 
+We based our architecture on cloudmesh, an open-source hybrid multicloud toolkit. We integrated a new component that provides data scientists with the ability to automatically generate these services (see Fig. 1). One of the most important aspects of generating REST services is language independence. For this reason, we use the OpenAPI Specification. This specification defines a standard, and language-agnostic interface to REST APIs. Although the concept of REST is easy to understand, a significant amount of expertise is needed to apply it, which domain scientists may not be interested in but would be keen on reusing without needing to know the details.
 
 \begin{center}
 \pdftooltip{\includegraphics[width=0.7\columnwidth]{images/openapi-arch-new-2.pdf}
