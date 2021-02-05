@@ -1,5 +1,7 @@
 \hyphenation{al-though Al-though}
 
+\newcommand{\Cloudmesh}{XXXXXXXXX}
+
 \section{Introduction}
 
 
@@ -13,7 +15,9 @@ For this reason, we developed a sophisticated but easy to use framework that tak
 
 The paper is structured as follows. In \Section{sec:background} we will start with a very brief background section to allow domain experts to catch up with the terminology and concepts used in our architecture. The background analysis leads us to our requirements presented in \Section{sec:requirements} and our architectural design shown in \Section{sec:architecture}. Our benchmarks are collected in \Section{sec:benchmark}. We present our conclusion in \Section{sec:conclusion}.
 
+\begin{comment}
 In the appendix, a small number of useful notes are provided to ease replication of what we have achieved by others. In the final publication, the appendix can be removed with a link to our manual for the pilot framework presented here \cite{cloudmesh-manual, cloudmesh-openapi} where we will include the content of the appendix. 
+\end{comment}
 
 \section{Background}
 \label{sec:background}
@@ -45,20 +49,20 @@ benefit and be used for analytics services.
 \label{fig:bdra}
 \end{figure}
 
-NIST has developed through open working group participation the
+\censor{NIST} has developed through open working group participation the
 following documents related to the
-NBDIF~\cite{nist-v1,nist-v2,nist-v3,nist-v4,nist-v5,nist-v6,nist-v7,nist-v8,nist-v9}. Within
-these activities, Volume 8 is of especial importance as it allows a
+\censor{NBDIF~\cite{nist-v1,nist-v2,nist-v3,nist-v4,nist-v5,nist-v6,nist-v7,nist-v8,nist-v9}}. Within
+these activities, \censor{Volume 8} is of especial importance as it allows a
 set of Big Data Architectural needs
-\cite{cloudmesh-openapi}\cite{las20book-cloudeng}. This effort builds the basis of
+\censor{~\cite{cloudmesh-openapi}\cite{las20book-cloudeng}}. This effort builds the basis of
 our activities reported here while expanding it to cloud providers and
 services focusing on {\em Analytics Services}, which are not covered
 by the current volumes. 
 
-In a previous effort, we have developed a reference implementation that follows the architecture laid out in NBDIF and is easy to use by scientists. 
-However, it focused mostly on multi-cloud provider access via REST services and command-line tools. The reference implementation is done as part of the cloudmesh project, which was one of the first hybrid multi-cloud provider interfaces, even including cloud technologies that are no longer active such as Eucalyptus \cite{www-eucalyptus}, OpenCirrus \cite{opencirrus}, FutureGrid \cite{futuregrid}, and Comet Cloud \cite{las-comet}. Today, it supports clouds such as AWS \cite{www-aws}, Azure \cite{www-azure}, Google Cloud Platform \cite{www-google}, Oracle \cite{www-oracle-cloud}, and OpenStack \cite{www-openStack}. It will offer further value as it also explores the integration of MapReduce frameworks such as Hadoop \cite{www-hadoop} and Spark \cite{www-spark}, as well as container-based frameworks such as Docker \cite{www-docker}, and Kubernetes \cite{www-kubernetes}. 
+In a previous effort, we have developed a reference implementation that follows the architecture laid out in \censor{NBDIF} and is easy to use by scientists. 
+However, it focused mostly on multi-cloud provider access via REST services and command-line tools. The reference implementation is done as part of the \Cloudmesh project, which was one of the \censor{first} hybrid multi-cloud provider interfaces, even including cloud technologies \censor{that are no longer active such as Eucalyptus \cite{www-eucalyptus}, OpenCirrus \cite{opencirrus}, FutureGrid \cite{futuregrid}, and Comet Cloud \cite{las-comet}}. Today, it supports clouds such as AWS \cite{www-aws}, Azure \cite{www-azure}, Google Cloud Platform \cite{www-google}, Oracle \cite{www-oracle-cloud}, and OpenStack \cite{www-openStack}. It will offer further value as it also explores the integration of MapReduce frameworks such as Hadoop \cite{www-hadoop} and Spark \cite{www-spark}, as well as container-based frameworks such as Docker \cite{www-docker}, and Kubernetes \cite{www-kubernetes}. 
 
-However, the work presented here focuses on creating analytics services that can be automatically created and hosted on any of the clouds supported by cloudmesh. This is a non-trivial effort due to the large number of technologies involved and is outside of the expertise of domain scientists. However, the use of cloudmesh makes it possible for the domain scientist to easily access these services and leverage our more than ten years of experience in this field.
+However, the work presented here focuses on creating analytics services that can be automatically created and hosted on any of the clouds supported by \Cloudmesh. This is a non-trivial effort due to the large number of technologies involved and is outside of the expertise of domain scientists. However, the use of \Cloudmesh makes it possible for the domain scientist to easily access these services and leverage our more than ten years of experience in this field.
 
 The previous work provides us with a blueprint on how to proceed.  We list the following main findings of our earlier work that we leverage as part of this work.
 
@@ -66,9 +70,9 @@ The previous work provides us with a blueprint on how to proceed.  We list the f
   
 \item[Software Defined Analytics Services and Applications.] ~\\ 
   Just as
-  in the NBDIF, the utilization of \emph{DevOps} to deliver
+  in the \censor{NBDIF}, the utilization of \emph{DevOps} to deliver
   Software-Defined (SD) Big Data applications is of
- utmost importance for the design of reusable services and components \cite{cloudmesh-manual,bigdata-stack-1,bigdata-stack-2}. 
+ utmost importance for the design of reusable services and components \censor{~\cite{cloudmesh-manual}}. 
   
 \item[Multi-cloud Provider Interfaces.] Volume 8 was through community
   input shaped in such a form that it allows multi-cloud
@@ -97,7 +101,7 @@ follows:
 {\em Develop an easy to use framework that allows the scientists (a) to develop shareable analytics components (b) allow for the deployment of them, and (c) allow for the easy reuse of the services by community members leveraging the deployments.} 
 
 
-
+\begin{comment}
 \subsection{REST}\label{rest}
 
 One of the most common architectural styles for cloud-related services is based on {\bf R}epr{\bf E}sentational {\bf S}tate {\bf T}ransfer (REST). REST often uses
@@ -180,6 +184,8 @@ programming to REST style architectures. They include, for example, different ca
 
 Within our work reported here, we will heavily base our architecture on REST. From this small discussion, it is evident that although the concept of REST is easy to understand, a significant amount of expertise is needed to apply it, which domain scientists may not be interested in to know but keen on reusing without needing to know the details.
 
+\end{comment}
+
 \subsection{OpenAPI}
 
 One of the important aspects of generating REST services is a language-independent formulation of REST services. For this reason, the ``OpenAPI Specification (OAS) defines a standard, language-agnostic interface to RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with minimal implementation logic \cite{openapi}.''
@@ -188,11 +194,11 @@ Hence the specification allows us to not only display the documentation but also
 
 An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases. One of the issues with using the OpenAPI during the design of a project is that it takes considerable effort to understand the specification. Based on our experience of integrating it into university courses, it is a formidable effort to learn and use it. The lessons from this educational effort that includes researchers, professionals, graduate, and undergraduate students motivated this work.
 
-\subsection{Hybrid Multi-Cloud Computing with Cloudmesh}\label{cloudmesh}
+\subsection{Hybrid Multi-Cloud Computing with \Cloudmesh}\label{cloudmesh}
 
 Cloud computing providers offer their customers on-demand self-service
 computing resources that are rapidly elastic and accessible via broad
-network access \cite{nist-cloud-standard}.
+network access \censor{~\cite{nist-cloud-standard}}.
 They accomplish this through the economies of scale achieved by resource
 pooling (serving multiple customers on the same hardware) and using
 measured services for fine-grained customer billing \cite{nist-cloud-standard}.
@@ -221,26 +227,26 @@ Today's infrastructure deployments can benefit from a {\em hybrid multi-cloud}
 strategy in which a mix of cloud-enabled services such as computing, storage, and other services 
 are integrated from on-premises infrastructure, private cloud services, and a public cloud.
 
-As pointed out earlier, Cloudmesh \cite{cloudmesh-manual} is a framework and toolkit that enables users to
-easily access hybrid multi-cloud environments. Cloudmesh is an evolution of
-previous tools that have been used by many users. Cloudmesh makes
+As pointed out earlier, \censor{Cloudmesh \cite{cloudmesh-manual}} is a framework and toolkit that enables users to
+easily access hybrid multi-cloud environments. \Cloudmesh is an evolution of
+previous tools that have been used by many users. \Cloudmesh makes
 interacting with clouds easy by creating a service mashup to access
-common cloud services across numerous cloud platforms. Cloudmesh
+common cloud services across numerous cloud platforms. \Cloudmesh
 contains a sophisticated command shell, a database to store JSON
 objects representing virtual machines, storage, and a registry of REST
-services \cite{cloudmesh-openapi}.  Cloudmesh has a sophisticated
+services \censor{~\cite{cloudmesh-openapi}}.  \Cloudmesh has a sophisticated
 plugin concept that is easy to use and leverages python namespaces
 while integrating plugins from different source code
-directories \cite{cloudmesh-github}.  Installation of Cloudmesh is
-available for macOS, Linux, Windows, and Rasbian
-\cite{cloudmesh-manual}.
+directories \censor{~\cite{cloudmesh-github}}.  Installation of \Cloudmesh is
+available for macOS, Linux, Windows, and RasberryOS
+\censor{~\cite{cloudmesh-manual}}.
 
-Cloudmesh works with a variety of cloud providers, including Amazon Web
+\Cloudmesh works with a variety of cloud providers, including Amazon Web
 Services, Microsoft Azure, Google Cloud Platform, and Oracle's OpenStack
-based providers such as the academic research serving Chameleon Cloud \cite{chameleon-cloud}.
+based providers such as the academic research serving Chameleon Cloud \censor{~\cite{chameleon-cloud}}.
 
-Recently we have also explored containers and microservices. The work presented here summarizes some of this effort. With the help of a plugin {\em cloudmesh-openapi} We can generate REST services, including microservices and
-containers, to organize its functions and code. In addition, cloudmesh can be distributed as a container and used in a containerized environment. Through this ability, cloudmesh services generated with {\em cloudmesh-openapi} can also be deployed on Kubernetes.
+Recently we have also explored containers and microservices. The work presented here summarizes some of this effort. With the help of a plugin \censor{~{\em cloudmesh-openapi}} we can generate REST services, including microservices and
+containers, to organize its functions and code. In addition, cloudmesh can be distributed as a container and used in a containerized environment. Through this ability, cloudmesh services generated with \censor{{\em cloudmesh-openapi}} can also be deployed on Kubernetes.
 
 
 \input{content-requirements}
@@ -267,7 +273,7 @@ We developed benchmark tests that are pytest replications of Scikit-learn artifi
 
 The team obtained cloud service
 accounts from AWS, Azure, Google, and OpenStack. To deploy the pytests,
-the team used Cloudmesh and its OpenAPI based REST services to
+the team used \Cloudmesh and its OpenAPI based REST services to
 benchmark the performance on different cloud services. 
 
 Benchmarks include components like data transfer time, model train time, model prediction time, and more. Besides this report, scripts and other code are provided for others to replicate our tests.
@@ -387,12 +393,12 @@ The Price is the purchase cost and 1yr energy cost, amortized over a year and gi
 \subsection{Single Cloud Provider AI Service Benchmark.}
 \label{single-cloud-provider-service-benchmarking}
 
-The benchmark script for the Eigenfaces SVM example uses Cloudmesh to
-create virtual machines and set up a Cloudmesh OpenAPI environment
+The benchmark script for the Eigenfaces SVM example uses \Cloudmesh to
+create virtual machines and set up a \Cloudmesh OpenAPI environment
 sequentially across the three measured clouds, Amazon, Azure,
 and Google. After the script sets up the environment, it runs a series
 of pytests that generate and launch the Eigenfaces-SVM OpenAPI service,
-and then conducts runtime measurements of various service functions. Also, we run the same pytests on two Raspberry Pi models, a MacBook Pro running a Docker container, and a bare metal MacBook Pro to demonstrate Cloudmesh OpenAPI's flexibility for multi-platform use.
+and then conducts runtime measurements of various service functions. Also, we run the same pytests on two Raspberry Pi models, a MacBook Pro running a Docker container, and a bare metal MacBook Pro to demonstrate \Cloudmesh OpenAPI's flexibility for multi-platform use.
 
 The benchmark runs the pytest in two configurations. After the benchmark
 the script sets up a virtual machine environment, it runs the first pytest
@@ -452,8 +458,8 @@ allows us to measure the runtime overhead added by OpenAPI compared to the
 source example. Here, the two functions are identical except that the
 OpenAPI train function makes an additional function call to store the
 model to disk. This is necessary to share the model across
-the train and predict functions. In the figure there are two bars per cloud provider. The blue bars are the training time of the model when hosted as a Cloudmesh OpenAPI function. The
-orange bars are the training time of the Scikit-learn example code without Cloudmesh OpenAPI involvement. The bars plot the mean runtimes and the error bar reflects the standard deviation of the runtimes. In  \Figure{fig:train} we show the same plot without the Pi models, MacBook, and docker results to allow a closer comparison of the three comparable clouds.
+the train and predict functions. In the figure there are two bars per cloud provider. The blue bars are the training time of the model when hosted as a \Cloudmesh OpenAPI function. The
+orange bars are the training time of the Scikit-learn example code without \Cloudmesh OpenAPI involvement. The bars plot the mean runtimes and the error bar reflects the standard deviation of the runtimes. In  \Figure{fig:train} we show the same plot without the Pi models, MacBook, and docker results to allow a closer comparison of the three comparable clouds.
 
 \TwoFIGURES
     {sample_graph_2_pi1.pdf}
@@ -682,9 +688,9 @@ upload 	      & remote & google &  8.87 &  5.39 & 15.44 & 4.52 \\
 \subsection{Multi-Cloud AI Service Benchmark}
 \label{sec-multi-benchmark}
 
-In this benchmark, our script first acquires VMs, installs Cloudmesh
+In this benchmark, our script first acquires VMs, installs \Cloudmesh
 OpenAPI, and launches the Eigenfaces SVM AI service on three separate
-cloud providers. Because Cloudmesh has limited parallel computing
+cloud providers. Because \Cloudmesh has limited parallel computing
 support, the script deploys the VMs in a serial manner. After the
 services are running, we then run our tests in a parallel manner as
 depicted in \Figure{fig:2}. Testing in parallel provides faster benchmark
@@ -719,7 +725,7 @@ In \Table{tab:3} we provide complete test results for the multi-cloud benchmark.
 \section{Limitations}\label{limitations}
 
 Azure has updated their libraries and discontinued the version 4.0 Azure
-libraries. We updated Cloudmesh to use the new library, but not all
+libraries. We updated \Cloudmesh to use the new library, but not all
 features, such as virtual machine delete, are implemented or verified.
 
 \section{Conclusion}
@@ -734,12 +740,13 @@ However, our most significant gain from this project is the reduction in manpowe
 \section*{Acknowledgment}
 
 We like to thank
+\censor{
 Brian Kegerreis,
 Jonathan Beckford,
 Jagadeesh Kandimalla,
 Prateek Shaw,
 Ishan Mishra,
-Fugang Wang, and Andrew Goldfarb for developing the Python REST service generator on which this work is based on. We like to thank Caleb Wilson for his contributions to this project. We also like to thank the more than 70 contributors to the cloudmesh toolkit for developing the various cloud providers. We would like to thank the NBDIF working group for their contributions in discussions that lead to the development of this effort.
+Fugang Wang, and Andrew Goldfarb for developing the Python REST service generator on which this work is based on. We like to thank Caleb Wilson for his contributions to this project. We also like to thank the more than 70 contributors to the cloudmesh toolkit for developing the various cloud providers. We would like to thank the NBDIF working group for their contributions in discussions that lead to the development of this effort.}
 
 
 

@@ -1,55 +1,421 @@
+% \documentclass{article}
+%\documentclass[acmtog,review=false]{acmart}
+
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+
+
+
+%\usepackage[disable]{todonotes}
+\usepackage{todonotes}
+\usepackage{fontawesome}
+\usepackage{diagbox}
+\usepackage{longtable}
+
+\input{format/packages}
+
+\usepackage{hyperref}
+
+%\newcommand{\OK}{\faCheckSquare}
+%\newcommand{\NO}{\faTimesCircle}
+\newcommand{\OK}{\faCheck}
+\newcommand{\NO}{\faTimes}
+
+\newcommand{\TODO}[1]{\todo[inline]{#1}}
+
+
+
+\newcommand{\TITLE}{A Survey of OpenAPI Tools for Service Generation with Python}
+
+
+\begin{document}
+
+\title{\TITLE
+%\thanks{Identify applicable funding agency here. If none, delete this.}
+}
+
+
+\author{\IEEEauthorblockN{
+Gregor von Laszewski\IEEEauthorrefmark{1}, 
+Anthony Orlowski\IEEEauthorrefmark{1}, 
+others add yourself once you contributed
+}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}
+\textit{Dept. of Intelligent Systems Engineering},
+\textit{Indiana University},
+Bloomington, IN 47408, USA \\
+Email: laszewski@gmail.com} % 0000-0001-9558-179X (orcid)
+}
+
+
+\maketitle
+
+\begin{abstract}
+
+TBD
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+Software/Software Engineering, Tools,  Programming Environments/Construction
+Tools,  Code generation, Distributed systems,
+\end{IEEEkeywords}
+
+{\bf\em Keywords---} {\em\bf code generation,
+multi-cloud,
+hybrid cloud,
+OpenAPI,
+REST}
+
+\tableofcontents
+
+\subsection{TODO}
+
+\TODO{1 -- we need to verify date of last change in the bibtex entries that come form github and update the month and year accordingly. This way we can identify outdated or inactive projects easier}
+
+\TODO{2 -- Create non plagiarized summary for each technology}
+
+\TODO{3 -- find features unique to the technology, but do not do the advertisement trap. ABC is the best of (if the project claims this we can not say ... its a claim)}
+
+\TODO{6 -- sort technologies into different sections}
+
+\TODO{4 -- derive categories so we can do a table to compare them}
+
+\TODO{5 -- cite Gregors cloud computing book with the rest and openapi chapters}
+
+\TODO{7 -- prioritize the technology to be written about and do not spend much time on openapi 2.0. remember swagger (old) is openapi 2.0}
+
+\TODO{11 - add citations to table}
+
+
 \section{REST Service Generation Frameworks}
 
-- we need bibtex for all urls
-- not yet looked at
+Categories:
 
-\url{https://rapidapi.com/blog/best-python-api-frameworks/}
-
-\subsection{Python}
+We need categories and describe what they are
 
 \begin{description}
 
-\item[tornado]
-\item[fastapi]
-\item[Sanic]
-\item[falcon]
-\item[bottle]
-\item[hug]
-\item[turbogears]
-\item[web2py]
-\item[pyramid]
+\item[Language] -- REST is not dependent on a particular language, but many supporting libraries written in a particular language allow using REST services in a straight forward fashion. There are many REST APIs and frameworks available for the Python programming language. 
+In this work we will focus on Python.
 
-\item[cloudmesh]
 
-\url{https://github.com/cloudmesh/cloudmesh-openapi} 
+\item[Reviews and Collections] --
 
-\item {eve} \url{https://docs.python-eve.org/en/stable/}
+\item[Microservice] --
 
-was a disbandend project for a while and recommended touse others we started with this and than switched to conexion swagger.
+\item[Web Framework] --
+A web framework is a software framework that is helping in the the development of web applications including web services. It integrates  web resources and web API's so users of the Framework can easily use and access them. Web frameworks promote development workflows for  simplifying the integration and development of  new services while reducing the overhead typically associated during the development phase for standard tasks. This may include security, database, Web page templates, session management, and code development and reuse.
 
-\item[restful]
+\item[Client] -- Clients  deal with intaeracting easily with REST services. An efficient client will make the access easy and fast.
 
-\url{https://flask-restful.readthedocs.io/}
+\item[Server] -- Servers are running in the background and can be scaled based on user demand. Most often servers are used from a Web Framework. 
 
-\item[django] \url{https://www.django-rest-framework.org/}
+\item[Code Generators] --
 
-\item{conexion} \url{https://github.com/zalando/connexion}
+\item[Service Generators] -- 
 
-\item{Requests} \url{https://requests.readthedocs.io/}  just acessing
 
 \end{description}
 
-\begin{table}[htb]
+\TODO{8 -- maybe we need database as category}
 
-\caption{Comparision of Python REST service frameworks}
+\subsection{Reviews and Collections}
+
+15 OpenAPI Tools and frameworks \cite{www-python-rest-best}
+
+
+
+
+
+\subsection{Reviews and Collections}
+
+\begin{description}
+
+\item[TODO]
+
+\end{description}
+
+\subsection{Microservice}
+
+\begin{description}
+
+\item[TODO]
+
+\end{description}
+
+\subsection{Web Framework}
+
+\begin{description}
+
+\item[TODO]
+
+\end{description}
+
+\subsection{Client}
+
+\begin{description}
+
+\item[TODO]
+
+\end{description}
+
+\subsection{Server}
+
+\begin{description}
+
+\item[tornado] todo \cite{www-tornado}
+Description:
+Features:
+
+\item[Sanic] todo \cite{www-sanic}
+Description:
+Features:
+
+\item[falcon] todo \cite{www-falcon}
+Description:
+Features:
+
+\item[bottle] todo \cite{www-bottle}
+Description:
+Features:
+
+\item[turbogears] todo \cite{www-turbogears}
+Description:
+Features:
+
+\item[web2py] todo \cite{www-web2py}
+Description:
+Features:
+
+\item[pyramid] todo \cite{www-pyramid}
+Description:
+Features:
+
+\end{description}
+
+\subsection{Service and Code Generators} 
+
+Possible features:
+\begin{itemize}
+
+\item Supports multiple servers
+
+\item Built in security (OAuth2, Simple)
+
+\item Decoupled service and web-framework code (no function decorators or web framework code mixed with service logic)
+
+\item OpenAPI specification generation version (2.0, 3.0, both)
+
+\item Built-in interactive documentation
+
+\item Routing (URI to function) (Explicit, Automatic)
+
+\item Automatic parameter and response serialization and de-serialization, type casting, type validation
+
+\item API specification generation (``API first'', ``Code first'')
+
+\item API Versioning support
+
+\end{itemize}
+
+\begin{description}
+
+\item[cloudmesh] \cite{cloudmesh-openapi} 
+
+\item[Cloudmesh eve] \cite{www-cloudmesh-spec-eve}
+
+\item[eve] \cite{www-eve} was a disbanded project for a while and recommended to use others we started with this and than switched to conexion swagger.
+
+\end{description}
+
+
+\subsection{Languages}
+
+
+\begin{description}
+
+
+\item[Flask RESTX] todo \cite{www-flaskrestx} 
+
+\item[\href{https://flask-restful.readthedocs.io/}{Flask Restful}]
+    \cite{www-flask-restful}
+
+\item[\href{https://www.django-rest-framework.org/}{django}] \cite{www-django-rest}
+
+\item[\href{https://github.com/zalando/connexion}{connexion}] An ``API first'' service framework that directs HTTP requests to Python functions based on a user-provided OpenAPI 3.0 specification. It provides automatic request routing, parameter and response serialization, optional strict type checking, supports multiple servers, and provides interactive documentation and API versioning. \cite{www-connexion}
+
+\item[\href{https://requests.readthedocs.io/}{Requests}] \cite{www-python-requests}  just accessing
+
+\item[\href{https://github.com/tiangolo/fastapi}{fastapi}] A service framework that generates an OpenAPI 3.0 specification from user code and routes HTTP requests accordingly. A user provides function decorators, such as ``@app.get(\"/items/\{item\_id\}\")'', to declare a functions path and HTTP method type. It uses Python type annotations to generate API specification and provide argument and response type checking and serialization, supports parameters from cookies, forms, headers, and files, and provides validation constraints. It supports multiple ASGI servers, interactive documentation, and authentication including OAuth 2 and HTTP Basic. \cite{www-fastapi}
+
+\item[\href{https://github.com/hugapi/hug}{hugapi}] A service framework that generates an OpenAPI 3.0 specification from user service code extended with function decorators including HTTP methods and paths, and Python type annotations for function arguments. It supports multiple WSGI servers and provides built-in request testing and API versioning support. The framework provides user declared directives, input formatters, output formatters, middle-wear functions, and parameter mapping. \cite{www-hugapi}
+
+\item[\href{https://github.com/rafaelcaricio/sticker}{sticker}] \cite{www-sticker} A service framework that supports multiple web frameworks. It enables ``pure python'' request handlers by requiring manual OpenAPI 3.0 specification and expecting handlers to return a specially formatted dictionary that is then parsed for the chosen web framework.
+
+\item[\href{https://github.com/marshmallow-code/apispec}{apispec}] An OpenAPI 3.0 specification generator that is web-framework agnostic. It parses API specifications with doc-string utilities, and with built-in support for Marshmallow's Python object serialization. Multiple projects extend this project to tightly integrate it with a specific web-framework such as falcon or aiohttp. \cite{www-marshmallow} \cite{www-apispec}
+
+\end{description}
+
+\begin{table*}[htb]
+
+\caption{Comparison of Python REST service frameworks}
+
+
+\TODO{9 -- we may ave to flip the table}
+
+\TODO{10 -- if a feature is missing we do not realy have to use \NO, we just leave it empty.}
+
+\bigskip
 
 \begin{tabular}{|l|l|l|l|l|}
 \hline
+& \multicolumn{4}{c|}{Features}\\
+ Tools 
+ & \rotatebox{90}{Reference~} 
+ & \rotatebox{90}{Maintained~} 
+ &  \rotatebox{90}{Web Service} 
+ & \rotatebox{90}{Client} \\ \hline
+Cloudmesh OpenAPI & \cite{cloudmesh-openapi}  & \OK & \OK &  \\ \hline
+Cloudmesh Eve &  \cite{www-cloudmesh-spec-eve} & \NO & \OK &  \\ \hline
+Connexion & \cite{www-connexion}  & \OK & \OK &  \\ \hline
+Flask RESTX & \cite{www-flaskrestx} &  &  &  \\ \hline
+Flask Restful & \cite{www-flask-restful} &  &  &  \\ \hline
+Django REST & \cite{www-django-rest} &  &  &  \\ \hline
+Requests & \cite{www-python-requests} &  &  & \OK \\ \hline
+FastAPI & \cite{www-fastapi} &  &  & \OK \\ \hline
+hugapi & \cite{www-hugapi} & \OK &  \OK &  \\ \hline
+sticker & \cite{www-sticker}  & \OK & \OK &  \\ \hline
+Falcon apispec & \cite{www-falcon-apispec} &  &  &  \\ \hline
+Eve & \cite{www-eve}  &  &  &  \\ \hline
+Django drf-spectacular & \cite{www-drf-spectacular} &  &  &  \\ \hline
+Falcon apispec & \cite{www-falcon-apispec} &  &  &  \\ \hline
+Pyramid OPenAPI 3 & \cite{www-pyramid-openapi3} &  &  &  \\ \hline
+aio Openapi & \cite{www-aio-openapi} &  &  &  \\ \hline
+aishtto-apispec & \cite{www-aiohttp-apispec} &  &  &  \\ \hline
+Flask API Spec & \cite{www-flask-apispec} &  &  &  \\ \hline
+Flask Swagger & \cite{www-flask-swagger} &  &  &  \\ \hline
+Flask RestPlus & \cite{www-flask-restplus} &  &  &  \\ \hline
+Flask Swagger ui & \cite{www-flask-swagger-ui} &  &  &  \\ \hline
+OpenAPI core & \cite{www-openapi-core} &  &  &  \\ \hline
+pyswagger & \cite{www-pyswagger} & \NO  &  &  \\ \hline
+Django Rest Swagger & \cite{www-django-rest-swagger} & \NO &  &  \\ \hline
+Django drf yasg &  \cite{www-django-rest-swagger}& \NO  &  &  \\ \hline
+Tornado &  \cite{www-tornado} &  &  &  \\ \hline
+Sanic & \cite{www-sanic} &  &  &  \\ \hline
+Falcon &  \cite{www-falcon} &  &  &  \\ \hline
+Bottle &  \cite{www-bottle} &  & \OK &  \\ \hline
+Turbogears &  \cite{www-turbogears} &  & \OK &  \\ \hline
+Web2py & \cite{www-web2py} &  & \OK &  \\ \hline
+Pyramid &  \cite{www-pyramid} &  & \OK  &  \\ \hline
+Flasgger &  \cite{www-flasgger} &  &  &  \\ \hline
+SAFRS & \cite{www-safrs} &  &  &  \\ \hline
+apispec & \cite{www-apispec} & \OK  &  &  \\ \hline
+&  &  &  &  \\ \hline
 
- & cloudmesh &  restful &  django &  \\ \hline
- feature a &  &  &  &  \\ \hline
- feature b &  &  &  &  \\ \hline
- feature c &  &  &  &  \\ \hline
 \end{tabular}
 
-\end{table}
+\end{table*}
+
+Two aspects
+(a) focused on API frameworks for Python that use OpenAPI standard. 
+(b) focus on API frameworks that focus on REST services
+
+
+Within we see  (a) frameworks that rely on a ``specification first'' approach.  From the spec they can generate stub code in many languages. 
+(b) frameworks to define ``code first'' and then generate the specification.
+
+Anthony thinks these two that I thought were  similar to our efforts: fastapi, hugapi
+
+
+These lists were helpful in quickly scanning for similar tools:
+
+\begin {description}
+\item[\href{https://swagger.io/tools/open-source/open-source-integrations/}{something swagger}] \cite{www-swagger-integration}
+
+\item[\href{https://www.blazemeter.com/blog/how-to-generate-openapi-definitions-from-code}{some tutorial}] \cite{www-openapi-from-code}
+
+\item[\href{https://openapi.tools/}{OpenAPI Tools}] \cite{www-openapi-tools}
+
+\item[\href{https://apis.guru/awesome-openapi3/category.html}{APIs.guru}]\cite{www-apis-guru}
+
+\item[\href{https://github.com/topics/openapi3}{GitHub Topics openapi3}]\cite{???}
+
+
+\end{description}
+
+There may be a combination of code and swagger tools for defining rest services as microservices. We need to evaluate if these have been improved,a s several years when we started this none of them rely did the functional approach we had and required openapi to be added in detail as part of the comments. This may have changed.
+
+Frameworks that generate specifications from code but are limited to specific frameworks or extract specification provided in doc-strings or comments:
+
+\begin{description}
+
+\item[\href{https://github.com/thomaxxl/safrs}{SAFRS}] Generates specification from SQLAlchemy and Flask-Restful \cite{www-safrs}
+
+\item[\href{https://github.com/flasgger/flasgger}{Flasgger}] Can use specification defined in comments of Flask views  \cite{www-flasgger}
+
+\item[\href{https://github.com/axnsan12/drf-yasg}{drf-yasg}] Generates Swagger/OpenAPI 2.0 specification from Django Rest Framework API \cite{www-drf-yasg}
+
+\item[\href{https://github.com/tfranzel/drf-spectacular}{drf-spectacular}] Generates OpenAPI 3.0 specification from Django Rest Framework API \cite{www-drf-spectacular}
+
+\item[\href{https://github.com/alysivji/falcon-apispec}{falcon-apispec}] Generates Swagger/OpenAPI 2.0 specification from Falcon framework \cite{www-falcon-apispec}
+
+\item[\href{https://github.com/Pylons/pyramid_openapi3}{pyramid\_openapi3}] Generates OpenAPI 3.0 specification from Pyramid framework \cite{www-pyramid-openapi3}
+
+\item[\href{https://github.com/quantmind/aio-openapi}{aio-openapi}] Generates OpenAPI 3.0 specification with aiohttp framework \cite{www-aio-openapi}
+
+\item[\href{https://github.com/maximdanilchenko/aiohttp-apispec}{aiohttp-apispec}] Extends apispec to be used with aiohttp \cite{www-aiohttp-apispec}
+
+\item[\href{https://github.com/jmcarp/flask-apispec}{flask-apispec}] Extends apispec to be used with Flask \cite{www-flask-apispec}
+
+\end{description}
+
+
+\section{TODO}
+
+These have not yet been added to bibtex
+
+Flask-swagger for Swagger 2.0 only \cite{www-flask-swagger}
+
+Flask-restplus \cite{www-flask-restplus,}
+
+flask-swagger-ui \cite{www-flask-swagger-ui}
+
+Unclear:
+
+openapi-core \cite{www-openapi-core}
+
+Disbandend:
+
+pyswagger \cite{www-pyswagger} 
+
+django-rest-swagger \cite{www-django-rest-swagger}
+
+
+Support for OpenAPI is irrelevant:
+
+ Another divide I've found in these tools is whether they support Swagger 2.0/OpenAPI 2.0 or Openapi 3.0. It seems many of the older ones for 2.0 are disbanded and recommend other frameworks for new projects.
+
+
+
+For example:
+
+drf-yasg is for 2.0, \cite{www-drf-yasg}
+
+recommends below for 3.0
+
+drf-spectacular \cite{www-drf-spectacular}
+
+%
+% References
+%
+\input{openapi-table}
+
+%\bibliographystyle{ACM-Reference-Format}
+\bibliographystyle{IEEEtran}
+\bibliography{bib/references}
+
+
+
+\end{document}

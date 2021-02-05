@@ -8,13 +8,27 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{comment}
+\usepackage{censor}
+
+
 \input{format/packages}
 
 \input{format/macros}
 
 \newcommand{\TITLE}{Using GAS for Speedy Generation of Hybrid Multi-Cloud Auto Generated AI Services}
 
-
+\begin{comment} % \censor
+\author{\IEEEauthorblockN{
+Gregor von Laszewski\IEEEauthorrefmark{1}, 
+Anthony Orlowski\IEEEauthorrefmark{1}, 
+}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}
+\textit{Dept. of Intelligent Systems Engineering},
+\textit{Indiana University},
+Bloomington, IN 47408, USA \\
+Email: laszewski@gmail.com} % 0000-0001-9558-179X (orcid)
+}
+\end{comment}
 
 \begin{document}
 
@@ -23,24 +37,24 @@
 }
 
 \author{\IEEEauthorblockN{
-Gregor von Laszewski\IEEEauthorrefmark{1}, 
-Anthony Orlowski\IEEEauthorrefmark{1}, 
-Richard H. Otten\IEEEauthorrefmark{1}, 
-Reilly Markowitz\IEEEauthorrefmark{1},\\
-Sunny Gandhi\IEEEauthorrefmark{1}, 
-Adam Chai\IEEEauthorrefmark{1},
+\censor{Gregor von Laszewski}\IEEEauthorrefmark{1}, 
+\censor{Anthony Orlowski}\IEEEauthorrefmark{1}, 
+\censor{Richard H. Otten}\IEEEauthorrefmark{1}, 
+\censor{Reilly Markowitz}\IEEEauthorrefmark{1},\\
+\censor{Sunny Gandhi}\IEEEauthorrefmark{1}, 
+\censor{Adam Chai}\IEEEauthorrefmark{1},
 % Caleb Wilson\IEEEauthorrefmark{1},
-Geoffrey C. Fox\IEEEauthorrefmark{1}
+\censor{Geoffrey C. Fox}\IEEEauthorrefmark{1}
 and 
-Wo L. Chang\IEEEauthorrefmark{2}}
+\censor{Wo L. Chang}\IEEEauthorrefmark{2}}
 \IEEEauthorblockA{\IEEEauthorrefmark{1}
-\textit{Dept. of Intelligent Systems Engineering},
+\censor{\textit{Dept. of Intelligent Systems Engineering},
 \textit{Indiana University},
 Bloomington, IN 47408, USA \\
-Email: laszewski@gmail.com} % 0000-0001-9558-179X (orcid)
+Email: laszewski@gmail.com}} % 0000-0001-9558-179X (orcid)
 \IEEEauthorblockA{\IEEEauthorrefmark{2}
-\textit{Information Access Division}, 
-\textit{National Institute of Standards and Technology} \\ Gaithersburg, MD 20899, USA}}
+\censor{\textit{Information Access Division}, 
+\textit{National Institute of Standards and Technology} \\ Gaithersburg, MD 20899, USA}}}
 
 \begin{comment}
 
@@ -67,7 +81,7 @@ AI services,
 multi-cloud,
 hybrid cloud,
 OpenAPI,
-REST}
+REST, \censor{cloudmesh}}
 
 %\begin{description}[leftmargin=8em,style=nextline], yo
 
@@ -75,7 +89,10 @@ REST}
 
 
 \bibliographystyle{IEEEtran}
-\bibliography{bib/references}
+\bibliography{bib/references-blind}
+%\bibliography{bib/references}
+
+
 
 
 \end{document}
