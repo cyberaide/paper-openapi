@@ -1,25 +1,27 @@
 \subsection{Service Registry}
 \label{sec:registry}
 
-Currently, the installation and setup of cloudmesh openapi involves the
-installation of MongoDB and the configuration of mongo variables. This
-is documented
+Currently, the installation and setup of cloudmesh openapi involves
+the installation of MongoDB and the configuration of mongo
+variables. This is documented
 \href{https://github.com/cloudmesh/cloudmesh-openapi\#installation}{here.}
 
 There have been serveral recent cloudmesh projects involving Raspberry
-Pis. Unfortunately, the minimum version of MongoDB required for openapi
-is not available to the Raspberry Pi. Thus cloudmesh-https://www.overleaf.com/project/5fc4c48a11bb2d0ad8331f51openapi is not
-available to Pi users with MongoDB.
+Pis. Unfortunately, the minimum version of MongoDB required for
+openapi is not available to the Raspberry Pi. Thus
+cloudmesh-https://www.overleaf.com/project/5fc4c48a11bb2d0ad8331f51openapi
+is not available to Pi users with MongoDB.
 
 In an effort to provide this software to all those that are interested
-regardless of OS/machine, we have added a new default storage mechanism
-that functions {\em out-of-the-box} with cloudmesh-openapi. This storage
-mechanism is implemented with python's native Pickle at the heart. All
-interfaces associated with MongoDB interactions have been extended to
-support switching to PickleDB. Thus, this addition is backwards
-compatible with previous versions of cloudmesh-openapi and requires
-little changes in the existing code base to support. Since Pickle is
-native to python, it is supported on any platform running python.
+regardless of OS/machine, we have added a new default storage
+mechanism that functions {\em out-of-the-box} with
+cloudmesh-openapi. This storage mechanism is implemented with python's
+native Pickle at the heart. All interfaces associated with MongoDB
+interactions have been extended to support switching to
+PickleDB. Thus, this addition is backwards compatible with previous
+versions of cloudmesh-openapi and requires little changes in the
+existing code base to support. Since Pickle is native to python, it is
+supported on any platform running python.
 
 It is important to note that there are essentially no security
 mechanisms with Pickle. We provide this option for users to test their

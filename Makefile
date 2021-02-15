@@ -1,4 +1,4 @@
-FILENAME=vonLaszewski-openapi
+FILENAME=0-ieee-vonLaszewski-openapi
 DIR=paper-teaching
 
 # .PHONY: $(FILENAME).pdf

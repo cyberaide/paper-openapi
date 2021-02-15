@@ -1,44 +1,126 @@
 \hyphenation{al-though Al-though}
 
-\newcommand{\Cloudmesh}{$\Box\Box\Box\Box\Box\Box\Box\Box\Box$}
+\newcommand{\Cloudmesh}{%
+$\blacksquare\hspace{-0.1cm}
+\blacksquare\hspace{-0.1cm}
+\blacksquare\hspace{-0.1cm}
+\blacksquare\hspace{-0.1cm}
+\blacksquare\hspace{-0.1cm}
+\blacksquare\hspace{-0.1cm}
+\blacksquare\hspace{-0.1cm}
+\blacksquare\hspace{-0.1cm}
+\blacksquare\hspace{-0.1cm}
+$ ~}
+
+\newcommand{\COMMENT}[1]{}
+\newcommand{\CENSOR}[2]{#2~}
+
+\newcommand{\BLOCKCENSOR}[2]{
+
+\bigskip
+\fbox{
+\begin{minipage}{0.8\columnwidth}
+{\bf\em #1
+}
+\end{minipage}
+}}
+
 
 \section{Introduction}
 
-\Cloudmesh
+In today's application, scientists want to share their services with
+many colleagues while not only offering the services as bare metal
+programs but exposing the functionality as a Software as a Service
+(SaaS). This has the advantage that the services can be readily reused
+by other applications and hosted in the cloud, allowing access to
+state-of-the-art services including compute and data that otherwise would
+not be accessible to individual domain experts. Through the increased
+availability, resource constraints can be reduced, and scientists can
+we listoffer their analytics workflows as services to the community. This may
+include long-lasting services enabled by cloud computing as part of
+its Software as a Service (SaaS) paradigm or for smaller analytics
+functions as microservices. Furthermore, a subset of analytics
+functions can be offered as part of a serverless computing model,
+elevating the penetration from a pure bare metal solution to a
+multi-pronged cloud-based service offering.
 
-In today's application, scientists want to share their services with many colleagues while not only offering the services as bare metal programs but exposing the functionality as a Software as a Service (SaaS). This has the advantage that the services can be readily reused by other applications and hosted in the cloud, allowing access to state-of-the-art services or volumes of resources that otherwise would not be accessible to individual domain experts. Through the increased availability, resource constraints can be reduced, and scientists can offer their analytics workflows as services to the community. This may include long-lasting services envisioned by cloud computing as part of its Software as a Service (SaaS) paradigm or for smaller analytics functions as microservices. Furthermore, a subset of analytics functions can be offered as part of a serverless computing model, elevating the penetration from a pure bare metal solution to a multi-pronged cloud-based service offering.
+While working with many professionals, researchers, and students, we
+found that the barriers to entry to accomplish this goal remain very
+high, and would elude many domain experts using them as they have neither the
+expertise nor the time to learn the expertise to conduct the
+infrastructure-related tasks integrating DevOps and analytics
+tasks. Although recent developments, especially on the serverless
+computing side, have made progress, we ought to leverage the existing
+expertise of the domain scientists while automating the creation of
+various services to provide SaaS, microservices, and serverless
+computing automatically.
 
-While working with many professionals, researchers, and students, we found that the barriers to entry to accomplish this goal remain very high, and would elude many domain experts as they have neither the expertise nor the time to learn the expertise necessary to conduct the infrastructure-related tasks integrating DevOps and analytics tasks. Although recent developments, especially on the serverless computing side, have made progress, we ought to leverage the existing expertise of the domain scientists while automating the creation of various services from SaaS, microservices, and serverless computing.
+Having worked with the community, we found that the educational steps
+involved for a beginner take about two to four months to get up to a
+level where the development of cloud-based services is possible. We
+set the goal to explore if it is possible to drastically reduce the
+time needed to create such services.
 
-Having worked with this community, we found that the educational steps involved for a beginner take about two to three months to get up to a level where the development of cloud-based services is possible. We set the goal to explore if it is possible to drastically reduce the time needed to create such services.
+For this reason, we developed a sophisticated but easy to use
+framework that takes a regular Python function and converts it
+automatically into a secure REST service and OpenAPI
+specification \cite{openapi} that can be reused in the ecosystem of
+cloud services. We used this framework to create different AI-based
+REST services to showcase the approach's validity. In this paper we
+discuss examples taken from from SciKit-learn \cite{scikit-learn} and
+benchmark the execution of the resulting REST services on various
+clouds and an IoT device.
 
-For this reason, we developed a sophisticated but easy to use framework that takes a regular python function and converts it automatically into a secure REST service and OpenAPI specifications \cite{openapi} that can be reused in the ecosystem of cloud services. We used this framework to create many AI-based REST services to showcase the approach's validity. We used examples from SciKit-learn \cite{scikit-learn} and benchmark the execution of the resulting REST services on various clouds and an IoT device. 
-
-The paper is structured as follows. In \Section{sec:background} we will start with a very brief background section to allow domain experts to catch up with the terminology and concepts used in our architecture. The background analysis leads us to our requirements presented in \Section{sec:requirements} and our architectural design shown in \Section{sec:architecture}. Our benchmarks are collected in \Section{sec:benchmark}. We present our conclusion in \Section{sec:conclusion}.
+The paper is structured as follows. In \Section{sec:background} we
+start with a brief background section to allow domain
+experts to catch up with the terminology and concepts used in our
+architecture. The background analysis leads us to our requirements
+presented in \Section{sec:requirements} and our architectural design
+shown in \Section{sec:architecture}. Our benchmarks are collected
+in \Section{sec:benchmark}. We present our conclusion
+in \Section{sec:conclusion}.
 
 \begin{comment}
-In the appendix, a small number of useful notes are provided to ease replication of what we have achieved by others. In the final publication, the appendix can be removed with a link to our manual for the pilot framework presented here \cite{cloudmesh-manual, cloudmesh-openapi} where we will include the content of the appendix. 
+
+In the appendix, a small number of useful notes are provided to ease
+replication of what we have achieved by others. In the final
+publication, the appendix can be removed with a link to our manual for
+the pilot framework presented here \cite{cloudmesh-manual,
+cloudmesh-openapi} where we will include the content of the appendix.
+
 \end{comment}
 
 \section{Background}
 \label{sec:background}
 
-In this background section, we provide a small summary of activities related to this research so that domain experts can get a small introduction to concepts that we use to implement our architecture. It is beyond the scope of this paper to give more detailed introductions in topics such as IaaS, SaaS, microservices, serverless computing, OpenAPI, and REST services. The sections will, however, be useful as a starting point for further research to the reader. 
+We provide a small summary of activities that motivated this research and so
+that domain experts can get a small introduction to concepts that we
+use to implement our architecture. It is beyond the scope of this
+paper to give more detailed introductions in topics such as IaaS,
+SaaS, microservices, serverless computing, OpenAPI, and REST
+services. The sections will, however, be useful as a starting point
+for further research to the reader.
 
 \subsection{The Big Data Reference Architecture}
 
-NIST has developed a Big Data Reference Architecture as part of the NIST Big Data Interoperability Framework (NBDIF)\cite{nist-v6} and identified several use cases that motivate
-it \cite{nist-v3}. The reference architecture is depicted in \Figure{fig:bdra}. It includes the following components: Data Provider, Big Data Application Provider, Big Data Framework Provider, Data Consumer and
-System Orchestrator as well as two overarching fabrics: security and
-privacy and system management. There are three types of linkages,
-namely \emph{Big Data Information flow}, \emph{Service Use and
-  Software Tools}, and \emph{algorithms transfer}. The architecture
-presents a level of abstraction to define Big Data
-applications. Components that implement sophisticated functionality
-work in concert to address the challenging creation of instantiating architectures beyond the conceptual stage. As such, the components
-interact with each other that are expressed through the linkages
-within the NBDIF.  The next logical step is to explore how it can
-benefit and be used for analytics services.
+NIST has developed a Big Data Reference Architecture as part of the
+NIST Big Data Interoperability Framework (NBDIF)\cite{nist-v6} and
+identified several use cases that motivate that
+architecture \cite{nist-v3}. The architecture is depicted
+in \Figure{fig:bdra} and includes the following components: Data
+Provider, Big Data Application Provider, Big Data Framework Provider,
+Data Consumer and System Orchestrator as well as two overarching
+fabrics: security and privacy and system management. There are three
+types of linkages, namely \emph{Big Data Information
+flow}, \emph{Service Use and Software Tools}, and \emph{algorithms
+transfer}. The architecture presents a level of abstraction to define
+Big Data applications. Components that implement sophisticated
+functionality work in concert to address the challenging creation of
+instantiating architectures beyond the conceptual stage. As such, the
+components interact with each other that are expressed through the
+linkages within the NBDIF. Although an extensive set of documentation
+exists a reference implementatio has not been developed by NIST
+~\cite{nist-v1,nist-v2,nist-v3,nist-v4,nist-v5,nist-v6,nist-v7,nist-v8,nist-v9}}.
 
 \begin{figure}[htb]
 \centering
@@ -50,68 +132,141 @@ benefit and be used for analytics services.
 \label{fig:bdra}
 \end{figure}
 
-\censor{NIST} has developed through open working group participation the
-following documents related to the
-\censor{NBDIF~\cite{nist-v1,nist-v2,nist-v3,nist-v4,nist-v5,nist-v6,nist-v7,nist-v8,nist-v9}}. Within
-these activities, \censor{Volume 8} is of especial importance as it allows a
-set of Big Data Architectural needs
-\censor{~\cite{cloudmesh-openapi}\cite{las20book-cloudeng}}. This effort builds the basis of
-our activities reported here while expanding it to cloud providers and
-services focusing on {\em Analytics Services}, which are not covered
-by the current volumes. 
+Volume 8 is of especial importance as it provides a
+blueprint for interfaces to address the needs of a generalized Big Data
+Architecture as summarized in \censor{~\cite{cloudmesh-openapi}\cite{las20book-cloudeng}}}.
+This
+effort builds the theoretical basis of needed activities while
+expanding it to cloud providers and services focusing on {\em
+Analytics Services}. 
 
-In a previous effort, we have developed a reference implementation that follows the architecture laid out in \censor{NBDIF} and is easy to use by scientists. 
-However, it focused mostly on multi-cloud provider access via REST services and command-line tools. The reference implementation is done as part of the \Cloudmesh project, which was one of the \censor{first} hybrid multi-cloud provider interfaces, even including cloud technologies \censor{that are no longer active such as Eucalyptus \cite{www-eucalyptus}, OpenCirrus \cite{opencirrus}, FutureGrid \cite{futuregrid}, and Comet Cloud \cite{las-comet}}. Today, it supports clouds such as AWS \cite{www-aws}, Azure \cite{www-azure}, Google Cloud Platform \cite{www-google}, Oracle \cite{www-oracle-cloud}, and OpenStack \cite{www-openStack}. It will offer further value as it also explores the integration of MapReduce frameworks such as Hadoop \cite{www-hadoop} and Spark \cite{www-spark}, as well as container-based frameworks such as Docker \cite{www-docker}, and Kubernetes \cite{www-kubernetes}. 
+In a previous effort, we have developed a reference implementation
+that follows the architecture laid out in \censor{NBDIF} and is easy
+to use by scientists.  However, it focused mostly on multi-cloud
+provider access via REST services and command-line tools. \COMMENT{The
+reference implementation is done as part of the \Cloudmesh project,
+which was one of the first hybrid multi-cloud provider
+interfaces.}
 
-However, the work presented here focuses on creating analytics services that can be automatically created and hosted on any of the clouds supported by \Cloudmesh. This is a non-trivial effort due to the large number of technologies involved and is outside of the expertise of domain scientists. However, the use of \Cloudmesh makes it possible for the domain scientist to easily access these services and leverage our more than ten years of experience in this field.
+\begin{comment}
+even including cloud technologies \censor{that are no
+longer active,} such as Eucalyptus \cite{www-eucalyptus},
+OpenCirrus \cite{opencirrus}, FutureGrid \cite{futuregrid}, and Comet
+Cloud \cite{las-comet}}.
+\end{comment}
 
-The previous work provides us with a blueprint on how to proceed.  We list the following main findings of our earlier work that we leverage as part of this work.
+It supports clouds such as
+AWS \cite{www-aws}, Azure \cite{www-azure}, Google Cloud
+Platform \cite{www-google}, Oracle \cite{www-oracle-cloud}, and
+OpenStack \cite{www-openStack}. It can also offer furtheradditinal value as its goal is also to 
+explore the integration of
+MapReduce frameworks such as
+Hadoop \cite{www-hadoop} and Spark \cite{www-spark}, as well as
+container-based frameworks such as Docker \cite{www-docker}, and
+Kubernetes \cite{www-kubernetes}.
+
+However, the work presented here focuses not on the interaction with low-level
+cloud provider interfaces, but on the {\em creation of high-level analytics services
+that can be automatically created} and hosted on any of the
+clouds. \COMMENT{supported by \Cloudmesh.} This is a non-trivial
+effort due to the large number of technologies involved and is outside
+of the expertise of domain scientists. However, the use of \Cloudmesh
+makes it possible for the domain scientist to easily access these
+services and leverage our more than a decade long experience in this
+field.
+
+\CENSOR{The previous work provides us with a blueprint on how to proceed.  We
+list the following main findings of our earlier work that we leverage
+as part of this work.}{The architectural decissions of our effforts are defined
+by the following observations that will be integrated in our requirements:}
 
 \begin{description}
   
 \item[Software Defined Analytics Services and Applications.] ~\\ 
-  Just as
-  in the \censor{NBDIF}, the utilization of \emph{DevOps} to deliver
-  Software-Defined (SD) Big Data applications is of
- utmost importance for the design of reusable services and components \censor{~\cite{cloudmesh-manual}}. 
+  Just as idntified by \censor{NBDIF}, the utilization of \emph{DevOps} to
+  deliver Software-Defined (SD) Big Data applications is of utmost
+  importance for the design of reusable services and
+  components \censor{~\cite{cloudmesh-manual}}.
   
-\item[Multi-cloud Provider Interfaces.] Volume 8 was through community
+\item[Multi-cloud Provider Interfaces.]
+\BLOCKCENSOR{A section was removed to fulfull double blind review conditions.}
+
+\COMMENT{Volume 8 was through community
   input shaped in such a form that it allows multi-cloud
-  interfaces. Such interfaces have been in practical use in our software and showcase the validity of the NIST-BDRA approach. It is clear that we need to introduce such multi-cloud and multi-service
-  interfaces for analytics-related tasks whenever possible as motivated in our introduction. 
+  interfaces. Such interfaces have been in practical use in our
+  software and showcase the validity of the NIST-BDRA approach.}
+  
+  It is
+  clear that we need to introduce such multi-cloud and multi-service
+  interfaces for analytics-related tasks whenever possible as
+  motivated in our introduction.
 
-\item[Use Case Collection.] NIST has provided as part of the NIST BDRA
-  document Vol. 6~\cite{nist-v6} several use cases that can be analyzed and from which common big data services can be detected. These use
-  cases were sufficient to drive the NIST BDRA document \cite{nist-v6}
-  and allowed the community to investigate initial implementations. These use cases also motivate the work conducted in this effort.
+\item[Use Case Collection.] 
+\CENSOR{\item[Use Case Collection.] NIST has provided as part of the NIST BDRA
+  document Vol. 6~\cite{nist-v6} several use cases that can be
+  analyzed and from which common big data services can be
+  detected. These use cases were sufficient to drive the NIST BDRA
+  document \cite{nist-v6} and allowed the community to investigate
+  initial implementations. These use cases also motivate the work
+  conducted in this effort.}{To validate the work we need to identify
+  a number of simple use cases such as provided by SciKit Learn. In
+  other efforts we work on integrated usecases dealing with industry
+  as well as High Performance Computing Research use cases leveraging
+  AI service generation.}
 
-\item[Independent API Specification Leveraging OpenAPI.] ~\\ Although the use of OpenAPI \cite{openapi,openapi-tools} is not required as part of the NIST specification, it can be used to formulate services in a
-  language-independent fashion. Hence it allows {\em creating, evolving and promoting a vendor-neutral description format}. This is important to provide for our analytics services approach to promote a vendor-neutral and independent effort.
 
-\item[API's and Tools Targeting A Multi-Layered Architecture.] In our
-  previous effort, we learned that we need to provide support for
-  tools, services, and APIs on multiple levels in a multi-layered
-  architecture. While some users expect a generalized specification other users may require access on the command line, deployed services, or even a Jupyter notebook. We observe that in many cases,
-  the entry-level to define API specification is too high for many. This is the case for domain experts in the analytics community that often lack the necessary expertise for general service integration and deployment.
+\item[Independent API Specification Leveraging OpenAPI.]
+  \CENSOR{~\\ Although the use of OpenAPI \cite{openapi,openapi-tools}
+  is not required as part of the NIST specification, it can be used to
+  formulate services in a language-independent fashion. Hence, it
+  allows {\em creating, evolving and promoting a vendor-neutral
+  description format}. This is important to provide for our analytics
+  services approach to promote a vendor-neutral and independent
+  effort.}  {The use of OpenAPI \cite{openapi,openapi-tools} allows
+  {\em creating, evolving and promoting a vendor-neutral description
+  format}.  Although beneficial for interoperability concerns, it is
+  too complex, so a simpler approach is needed.}
+
+
+\item[API's and Tools Targeting A Multi-Layered Architecture.] The
+  community as identified that support for tools, services, and APIs
+  on multiple levels in a multi-layered architecture is needed. While
+  some users expect a generalized specification other users may
+  require access on the command line, deployed services, or even a
+  Jupyter notebook.
+  
+\item[Lower the Entry Barrier.] We observe that in many cases, the entry-level to
+  define API specification is too high for many. This is the case for
+  domain experts in the analytics community that often lack the
+  necessary expertise for general service integration and deployment.
 
 \end{description}
 
-Hence, previous work provides us with a blueprint on how to proceed, which we summarize as 
-follows:
+\COMMENT{previous work provides us with a blueprint on how to proceed,
+which we summarize as follows:}
 
-{\em Develop an easy to use framework that allows the scientists (a) to develop shareable analytics components (b) allow for the deployment of them, and (c) allow for the easy reuse of the services by community members leveraging the deployments.} 
+Hence, our goal can be summrized as follows:
+
+{\em Develop an easy to use framework that allows the scientists (a)
+to develop shareable analytics components (b) allow for the deployment
+of them, and (c) allow for the easy reuse of the services by community
+members leveraging the deployments.}
 
 
 \begin{comment}
 \subsection{REST}\label{rest}
 
-One of the most common architectural styles for cloud-related services is based on {\bf R}epr{\bf E}sentational {\bf S}tate {\bf T}ransfer (REST). REST often uses
-the HTTP protocol for the CRUD functions, which create, read, update, and
-delete resources. It is important to note that REST is not a standard,
-but it is a software architectural style for building network services.
-When referred to as a part of the HTTP protocol, REST has the methods of
-GET, PUT, POST, and DELETE. These methods are used to implement the CRUD
-functions on collections and items for which REST introduces abstractions for managing these collections and single resources \cite{las-book-cloud} as explained in \Figure{fig:rest}.
+One of the most common architectural styles for cloud-related services
+is based on {\bf R}epr{\bf E}sentational {\bf S}tate {\bf T}ransfer
+(REST). REST often uses the HTTP protocol for the CRUD functions,
+which create, read, update, and delete resources. It is important to
+note that REST is not a standard, but it is a software architectural
+style for building network services.  When referred to as a part of
+the HTTP protocol, REST has the methods of GET, PUT, POST, and
+DELETE. These methods are used to implement the CRUD functions on
+collections and items for which REST introduces abstractions for
+managing these collections and single resources \cite{las-book-cloud}
+as explained in \Figure{fig:rest}.
 
 
 \begin{figure}[htb] 
@@ -122,6 +277,7 @@ functions on collections and items for which REST introduces abstractions for ma
                   frame=0.01pt}%
 {\footnotesize
 \begin{description}
+
 \item[Collection of resources.] Assume the URI,  \verb|http://.../resources/|, identifies a
   collection of resources. The following CRUD functions would be
   implemented:
@@ -183,23 +339,52 @@ programming to REST style architectures. They include, for example, different ca
   from OpenAPI specifications \cite{www-swagger-codegen}
 \end{itemize}
 
-Within our work reported here, we will heavily base our architecture on REST. From this small discussion, it is evident that although the concept of REST is easy to understand, a significant amount of expertise is needed to apply it, which domain scientists may not be interested in to know but keen on reusing without needing to know the details.
+Within our work reported here, we will heavily base our architecture
+on REST. From this small discussion, it is evident that although the
+concept of REST is easy to understand, a significant amount of
+expertise is needed to apply it, which domain scientists may not be
+interested in to know but keen on reusing without needing to know the
+details.
 
 \end{comment}
 
 \subsection{OpenAPI}
 
-One of the important aspects of generating REST services is a language-independent formulation of REST services. For this reason, the ``OpenAPI Specification (OAS) defines a standard, language-agnostic interface to RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with minimal implementation logic \cite{openapi}.''
+One of the important aspects of generating REST services is a
+language-independent formulation of REST services. For this reason,
+the ``OpenAPI Specification (OAS) defines a standard,
+language-agnostic interface to RESTful APIs which allows both humans
+and computers to discover and understand the capabilities of the
+service without access to source code, documentation, or through
+network traffic inspection. When properly defined, a consumer can
+understand and interact with the remote service with minimal
+implementation logic \cite{openapi}.''
 
-Hence the specification allows us to not only display the documentation but also allows us to use it to generate the clients and server stubs from it automatically. OpenAPI can be formulated as a YAML Ain't Markup Language (YAML) \cite{www-yaml} file. 
+Hence this specification allows us to not only display the
+documentation but also allows us to use it to generate the clients and
+server stubs from it automatically. OpenAPI can be formulated as a
+YAML Ain't Markup Language (YAML) \cite{www-yaml} file.
 
-An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases. One of the issues with using the OpenAPI during the design of a project is that it takes considerable effort to understand the specification. Based on our experience of integrating it into university courses, it is a formidable effort to learn and use it. The lessons from this educational effort that includes researchers, professionals, graduate, and undergraduate students motivated this work.
+An OpenAPI definition can then be used by documentation generation
+tools to display the API, code generation tools to generate servers
+and clients in various programming languages, testing tools, and many
+other use cases. One of the issues with using OpenAPI during our extensive prior work
+is that it takes considerable effort to understand
+the specification. Based on our experience of dessmination into
+the community including agademia, industry, and government, it is a
+formidable effort to learn and use it. This effort is often too big
+to justify to be carried out by the AI domain experts.
+
+\COMMENT{The
+lessons from this effort that includes researchers, professionals,
+graduate, and undergraduate students motivated this work.}
 
 \subsection{Hybrid Multi-Cloud Computing with \Cloudmesh}\label{cloudmesh}
 
-Cloud computing providers offer their customers on-demand self-service
+\BLOCKCENSOR{A large section was removed to fulfull double blind review
+conditions.}{Cloud computing providers offer their customers on-demand self-service
 computing resources that are rapidly elastic and accessible via broad
-network access \censor{~\cite{nist-cloud-standard}}.
+network access~\cite{nist-cloud-standard}.
 They accomplish this through the economies of scale achieved by resource
 pooling (serving multiple customers on the same hardware) and using
 measured services for fine-grained customer billing \cite{nist-cloud-standard}.
@@ -224,37 +409,489 @@ heterogeneous solutions to meet their business needs while avoiding
 vendor lock-in and managing organizational risk. This may require
 comparing or using multiple cloud providers to meet various objectives.
 
-Today's infrastructure deployments can benefit from a {\em hybrid multi-cloud}
-strategy in which a mix of cloud-enabled services such as computing, storage, and other services 
-are integrated from on-premises infrastructure, private cloud services, and a public cloud.
+Today's infrastructure deployments can benefit from a {\em hybrid
+multi-cloud} strategy in which a mix of cloud-enabled services such as
+computing, storage, and other services are integrated from on-premises
+infrastructure, private cloud services, and a public cloud.
 
-As pointed out earlier, \censor{Cloudmesh \cite{cloudmesh-manual}} is a framework and toolkit that enables users to
-easily access hybrid multi-cloud environments. \Cloudmesh is an evolution of
-previous tools that have been used by many users. \Cloudmesh makes
-interacting with clouds easy by creating a service mashup to access
-common cloud services across numerous cloud platforms. \Cloudmesh
-contains a sophisticated command shell, a database to store JSON
-objects representing virtual machines, storage, and a registry of REST
-services \censor{~\cite{cloudmesh-openapi}}.  \Cloudmesh has a sophisticated
-plugin concept that is easy to use and leverages python namespaces
-while integrating plugins from different source code
-directories \censor{~\cite{cloudmesh-github}}.  Installation of \Cloudmesh is
-available for macOS, Linux, Windows, and RasberryOS
+
+As pointed out earlier, \censor{Cloudmesh \cite{cloudmesh-manual}} is
+a framework and toolkit that enables users to easily access hybrid
+multi-cloud environments. \Cloudmesh is an evolution of previous tools
+that have been used by many users. \Cloudmesh makes interacting with
+clouds easy by creating a service mashup to access common cloud
+services across numerous cloud platforms. \Cloudmesh contains a
+sophisticated command shell, a database to store JSON objects
+representing virtual machines, storage, and a registry of REST
+services \censor{~\cite{cloudmesh-openapi}}.  \Cloudmesh has a
+sophisticated plugin concept that is easy to use and leverages Python
+namespaces while integrating plugins from different source code
+directories \censor{~\cite{cloudmesh-github}}.  Installation
+of \Cloudmesh is available for macOS, Linux, Windows, and RasberryOS
 \censor{~\cite{cloudmesh-manual}}.
 
 \Cloudmesh works with a variety of cloud providers, including Amazon Web
-Services, Microsoft Azure, Google Cloud Platform, and Oracle's OpenStack
-based providers such as the academic research serving Chameleon Cloud \censor{~\cite{chameleon-cloud}}.
+Services, Microsoft Azure, Google Cloud Platform, and Oracle's
+OpenStack based providers such as the academic research serving
+Chameleon Cloud \censor{~\cite{chameleon-cloud}}.
 
-Recently we have also explored containers and microservices. The work presented here summarizes some of this effort. With the help of a plugin \censor{~{\em cloudmesh-openapi}} we can generate REST services, including microservices and
-containers, to organize its functions and code. In addition, cloudmesh can be distributed as a container and used in a containerized environment. Through this ability, cloudmesh services generated with \censor{{\em cloudmesh-openapi}} can also be deployed on Kubernetes.
+Recently we have also explored containers and microservices. The work
+presented here summarizes some of this effort. With the help of a
+plugin \censor{~{\em cloudmesh-openapi}} we can generate REST
+services, including microservices and containers, to organize its
+functions and code. In addition, cloudmesh can be distributed as a
+container and used in a containerized environment. Through this
+ability, cloudmesh services generated with \censor{{\em
+cloudmesh-openapi}} can also be deployed on Kubernetes.
+}
+
+\section{Requirements}
+\label{sec:requirements}
+
+Next, we present the most critical requirements that motivated our
+architecture and design. We start with a set of general requirements.
+
+\begin{description}
+
+\item[Leveraging new Python features.] Python is a very popular choice
+with many data scientists. Our framework will leverage the newest
+Python 3 features such as {\em Typing
+Interface} \cite{www-python-typing} in order to increase robustness
+and future-proofing of our code base.   
+
+\item[Ability to be used within Jupyter Notebooks.] ~\\
+The framework must be able to integrate with Jupyter notebooks as they
+are very popular with today's data scientists. The functionality must
+be easily accessible not only as part of Python programs but also
+within Jupyter notebooks. This is of special importance also for cloud
+services such as Google Colab \cite{google-colab} which for example,
+offers cloud-based Notebooks.
+
+\item[Easy of use] is a critical aspect of the framework that is to be
+addressed from the start by allowing for ease of creation, ease of
+deployment, and easy use of the generated services. This is
+accompanied by easy to use command-line tools. 
+
+\end{description}
+
+Next, we list some more specific requirements that motivate our
+architectural design.
+
+\begin{description}
+
+\item[Multi-Cloud Service Integration.] The framework must allow us to
+integrate multiple cloud services, including IaaS, PaaS, and
+SaaS. This also includes the ability to access AI-based services
+offered by the various cloud providers. 
+
+\item[Hybrid-Cloud Service Integration.] The framework must allow
+integrating on-premise, private, and public clouds. 
 
 
-\input{content-requirements}
+\item[Generalized Analytics Service Generator.] We need a generalized
+analytics service generator. The first step in the activity to
+generate an analytics service is to provide an OpenAPI Service
+generator. Our generator will allow us to define essential analytics
+functions such as (a) uploading and downloading files to an analytics
+service; (b) specifying the functionality through typing enhanced
+Python functions; and (c) generating the code for the service.
 
-\input{content-architecture}
+\item[Generalized Analytics Service Deployment.]
+After the service is generated, it needs to be deployed. For this step
+we will be reusing the Cloudmesh deployment mechanism to instantiate
+services on-demand on specified cloud providers such as AWS, Azure,
+and Google.
+
+\item[Generalized Analytics Service Invocation.]
+The next step includes the invocation of the deployed services. While
+analyzing some use cases, we identified that users often need to
+invoke the same service many times to tune service parameters in a
+quasi-realtime fashion while using parameters that can not be included
+in the URL. Hence we will need to upload input parameters through
+files if the simple typing data types provided by our proposed
+framework is not sufficient.
+
+\item[REST Services Architecture.]
+As REST has become the most prominent architectural design principle,
+our Generalized service architecture needs to be able to produce REST
+services.
+
+\item[Automated REST Service Generation for other Languages.] Our
+framework must have provisions included that allow the integration
+into other programming languages and, on the other hand, allows the
+integration of services and functions developed in other languages. 
+  
+\item[Generalized Analytics Service Registry.]
+As users and communities may develop many different services, we must
+provide the ability to (a) find specifications of generalized
+analytics services (b) find use-cases of generalized analytics
+services (c) find infrastructure on which such services can be
+deployed, and (d) find deployed analytics services. For this, we need
+a registry that can be queried by the community.
+
+\item[Generalized Composable Analytics Services.]
+Services must be allowed to reuse other services to allow for easy
+integration. Thus we need to make our services composable. This also
+includes the choreography of the execution of such composable
+services.
 
 
+\end{description}
+
+\section{Architecture}
+\label{sec:architecture}
+
+To satisfy our requirements, we have designed a neww multilayered
+architecture delivering a framework and toolkit to allow the easy
+generation and deployment of generalized AI-based REST services.
+
+It contains two main layers. The first layer is concerned with
+generating the REST services, while the second focuses on easy
+deployment in a multi-cloud environment. However, as we also deal with
+hybrid infrastructure, we allow in the second layer access to HPC and
+local on premise resources. In addition, our architecture addresses
+the creation of containers and their deployment in docker and
+Kubernetes. This way our framework is not only capable of delopying
+into cloud virtual machines, but also into other infrastructure
+services, either offered locally or in the cloud. Both layers can be
+accessed and controled via a convenient command shell and client. As
+the resulting services are REST services, deployed services can easily
+be accessed
+from other resources via the automated generated REST API.
+Next, we describe some of the
+important features within each of the layers while starting with the
+infrastructure deployment.
+
+\subsection{IaaS Access Layer}
+
+This layer allows us to deploy different infrastructure services on
+demand while introducing an abstraction layer for compute resources
+that allow IaaS access across the different platform offerings. Here,
+we can leverage from the \Cloudmesh toolkit that provides us with the
+basic interfaces to virtual machines to conveniently access in
+homogeneous fashion AWS, Azure, Google, Oracle, and OpenStack. Access
+to HPC and Bare metal can be integrated and has been showcased in the
+past in cloudmesh. We also have prototyped in cloudmesh interfaces for
+accessing compute resources via docker and Kubernetes.
+
+All of the deployment can easily be managed through a simple client
+shell that can also be used as a command line executor. This system is
+one of the key components of \Cloudmesh and allows easy integration of
+new commands and modules. This makes \Cloudmesh extensible, while
+others can provide new functionality that can be accessed in the
+command shell and command line interpreter. We use the \Cloudmesh
+\censor{command shell} to integrate the functionality of the Generalized AI
+Service (GAS) Generator and describe its functionality in more detail
+next.
+
+\subsection{GAS Generator}
+
+The Generalized AI Service (GAS)
+\COMMENT{\footnote{{\em GAS} the name GAS is
+derived from two different common usages. First, it refers to
+gasoline to fuel that we need to generate the services; the
+second is an expandable material that fills the whole of a
+container. If you have better ideas or analogies for naming our
+framework, please get in contact with us. We love to hear from you!}}
+Generator creates the REST service from a simple function or class
+definition while utilizing the newest Python language features such as
+documented typing information integrated in the program
+specification. The GAS Generator provides us with the {\em fuel} that
+is needed as part of the service deployment. This is manifested in a
+number of artifacts for the deployment. The artifacts include a
+specification derived from the Python program in OpenAPI format, the
+server code that is derived from the OpenAPI format, and an optional
+container specification file (e.g., Dockerfile). In addition, as we
+expect that the service is going to be reused, we use a GAS Service
+registry in which we record the specification description of the
+service as well as deployment information on which the service ought
+to be deployed. This deployment specification can be derived from
+other prototype cloudmesh components such as cloudmesh-frugal, which
+can obtain resources based on minimal cost. We have not explicitly
+included this component in our architecture picture as we have not
+used it as part of our benchmarks that we describe later.
+
+% \TODO{mod image to add a backlink to the user}
+
+\OneFIGURE
+    {openapi-arch-new-2.pdf}
+    {Layered architecture of the cloudmesh OpenAPI framework.}
+    {fig:arch-new}
+
+\subsection{GAS Workflow}
+
+To showcase why the framework is so useful for data scientists and reduces
+the steps needed to generate AI services, we are
+contrasting the definition workflow that a scientist undergoes while
+using OpenAPI without and with GAS Generator
+in \Figure{fig:flow-schema} and \Figure{fig:flow-function}.
+
+The workflow in \Figure{fig:flow-schema} showcases a typical workflow
+as promoted by the developers of Swagger
+codegen \cite{www-swagger-codegen}. The user identifies from his use
+case an OpenAPI schema that is used to generate the code. However,
+this is an unnecessary high entry barrier as the creation of these
+schemas is complex. While using the swagger code generator, a variety
+of code stubs in many different languages can be created. The code
+generated requires an unnecessary high entry barrier as we next need
+to identify how and where we include an implementation of a function
+that we want to expose as a REST service. Once complete, the rest of
+the activity requires the remaining steps to be executed by hand.
+
+Next, we like to contrast this with our much-simplified approach. As
+we know, the data scientists have the knowledge to write a Python
+function (or class); we simply leverage this expertise and take the
+function (or classs) and provide it as input (fuel) to the GAS
+generator. This is done with a simple one-line command invocation that
+includes the filename of the Python program in which the function (or
+class) is defined. The scientist does not have to learn REST, the
+scientist does not have to look into a code stub that is generated for,
+the scientist does not even have to know how to instantiate or run
+the service. Furthermore, the scientist does not have to know about
+any security as we have added features to the code to leverage the
+existing security mechanism as a simple flag to the GAS Generator
+command line instantiation. This simplification allows the scientist
+to develop REST services in minutes rather than a month as the entry
+barrier is very low. Additionally, as we are integrated with \Cloudmesh
+to facilitate
+infrastructure deployments, the instantiation of the services can also
+be done with a one line command under the assumption the scientist has
+accounts registered with the appropriate IaaS or PaaS provider. The scientist
+clearly can utilize this multi-cloud experinece which would otherwise
+to complex to achieve due to the high entry barrier. Furthermore we see that
+the overall workflow complexity is reduced as the scientist can just define the
+function up front instead of switching between code generation and code
+integration.
+
+\begin{figure}[htb]
+
+\begin{subfigure}{.48\columnwidth}
+    \centering
+    \begin{minipage}[b]{.6\columnwidth}
+    \input{flow-schema}
+    \end{minipage}
+    \caption{Schema-based component flow to specify an analytics service.}
+    \label{fig:flow-schema}
+\end{subfigure}
+\begin{subfigure}{.48\columnwidth}
+  \centering
+  \vspace{1.2cm}
+  \begin{minipage}[b]{.6\columnwidth}
+  \input{flow-function}
+    \end{minipage}  
+  \caption{New \Cloudmesh function-based component flow to specify an analytics service.}
+  \label{fig:flow-function}
+\end{subfigure}
+
+\caption{Contrasting the new apprach to autogenerate the REST service from functions. The white boxes represent user input, the green boxes represent tools that automatically generate, and the red boxes represent service deployment.}
+
+\end{figure}
+
+
+\subsection{Scripting as Fuel for the GAS Generator}
+
+Next, we demonstrate through two examples the simplicity of this
+aproach in praxis. In our example, we define a function returning a
+result. We chose a simple add function and list the code related to it
+in \Figure{fig:function}. Alternatively we could define it as a class
+showcased in \Figure{fig:class}. Other
+than using the typing annotations, the example is
+just a regular Python program. It can be tested locally on the system
+to check its functionality before we generate the service.
+
+\Figure{fig:deploy-function} shows how to generate and deploy the
+service. As this process is the same for the class-based definition
+and only differs in the filename, we omitted it to include an explicit
+listing of the access method for it. 
+
+Once the service is deployed the {\em curl} calls
+in \Figure{fig:function-curl} and \Figure{fig:class-curl} showcase how
+to interact with the service from the command line. Naturally, one can
+use any programming language that has built-in libraries for HTTP
+requests to interface with the service (such as {\em requests} in
+Python \cite{www-python-requests}).  Once we execute the following
+lines in a terminal, the result of the the addition will be calculated
+in the REST service, and it is returned.
+
+\newcommand{\FONT}{\tiny}
+
+
+\begin{figure}[htb]
+\begin{lstlisting}[language=Python,
+                   basicstyle=\ttfamily\FONT,
+                   numbers=left,                   
+                   numbersep=5pt,
+                   xleftmargin=5mm]
+def add(x: float, y: float) -> float:
+    """
+    adding x and y.
+    :param x: x value
+    :param y: y value
+    :return: result
+    """
+    result = x + y
+    return result
+\end{lstlisting}
+\caption{Defining an analytics function that is used to generate a REST service.}
+\label{fig:function}
+\bigskip
+
+\begin{lstlisting}[language=Python,
+                   basicstyle=\ttfamily\FONT,
+                   numbers=left,                   
+                   numbersep=5pt,
+                   xleftmargin=5mm]
+class Calculator:
+
+    @classmethod
+    def multiply(cls, x: int, y: int) -> int:
+        """
+        Multiply int by int and return an int.
+
+        :param x: the value of input #1
+        :param y: the value of input #2
+        :return: result of multiplying x by y
+        """
+        return x * y
+
+    @classmethod
+    def divide(cls, x: int, y: float) -> float:
+        """
+        Divide int by float and return a float.
+
+        :param x: the value of input #1
+        :param y: the value of input #2
+        :return: result of dividing x by y
+        """
+        return x / y
+
+if __name__ == '__main__':
+    calc = Calculator()
+    print("multiply 1 * 2: ",  calc.multiply(1, 2))
+    print("divide 6 / 3.14: ",  calc.divide(6, 2.3))
+
+\end{lstlisting}
+
+\caption{Defining an analytics function with the help of class methods to generate a REST service with multiple functions.}
+\label{fig:class}
+
+
+\begin{lstlisting}[language=bash,
+                   firstnumber=10,
+                   basicstyle=\ttfamily\tiny,
+                   numbers=left,                   
+                   numbersep=5pt,
+                   xleftmargin=5mm]
+$ cms openapi generate add --filename=./add.py
+$ cms openapi server start ./add.yaml 
+$ curl \ 
+ -X GET "http://localhost:8080/add?x=1&y=2" -H "accept: text/plain"
+# This command returns
+> 3.0
+\end{lstlisting}
+\caption{Generating, deploying, and invoking the REST service. {\color{white}aaaaaaaa}}
+\label{fig:deploy-function}
+\label{fig:function-curl}
+
+
+
+\bigskip
+
+\begin{lstlisting}[language=Python,
+                   firstnumber=29,
+                   basicstyle=\ttfamily\FONT,
+                   numbers=left,                   
+                   numbersep=5pt,
+                   xleftmargin=5mm]
+$ curl -X GET "http://localhost:8080/multiply?x=1&y=2" -H "accept: text/plain"
+$ curl -X GET "http://localhost:8080/divide?x=6&y=3.14" -H "accept: text/plain"
+\end{lstlisting}
+
+\caption{Defining an analytics function with the help of class methods to generate a REST service with multiple functions.}
+\label{fig:class-curl}
+
+\end{figure}
+
+
+\subsection{GAS Security}
+
+As we leverage OpenAPI and automatically generated OpenAPI services,
+it is possible to leverage security mechanisms from the underlying
+service implementation. To showcase this ability, we added basic
+authentication into our framework as an example
+configuration. However, it is certainly possible to extend this as the
+services we use also support OAuth, ApiKey Authentication, Bearer
+Authentication (JWT), and HTTPS
+support \cite{connexion-security}\cite{cloudmesh-openapi}.
+
+To demonstrate basic authentication, a cloudmesh user can create an
+OpenAPI server whose endpoints are only accessible as an authorized
+user. Currently, when basic auth is used, all endpoints are secured
+with this method. In future versions, we intend to allow securing
+selected methods.  An example of the usage of basic auth is provided
+on our Web page at \cite{www-cloudmesh-openapi-security}.
+
+\section{Deployment Scenarios}
+
+Due to the versatility of REST and our ability to integrate with a
+variety of infrastructure services, a rich set of deployment scenarios
+is possible. Two important scenarios related to single and multiple
+service provider deployments are discussed next.
+
+\subsection{Single Cloud Provider Hosted AI Service}
+
+In this scenario, a user deploys Cloudmesh OpenAPI on a virtual
+machine from a cloud provider and uses it to host auto-generated,
+RESTful, AI services. Next, the scientist constructs an AI service as
+a set of Python functions that implement a workflow, for example,
+downloading data from a remote server, training an AI model, uploading
+a new sample for prediction, and running a prediction on that
+sample. After the deployment, the service is accessible using standard
+HTTP request methods. In \Figure{fig:1} we show a remote client that
+accesses such a typical AI service workflow.  Here the service is just
+deployed on a virtual machine from a single cloud provider. Cloudmesh
+provides the choice on which infrastructure provider to place the
+service. Through our security mechanism, the service can either be
+exposed to the public or to authenticated and authorized users.
+
+\OneFIGURE
+  {architecture-openapi-1.pdf}
+  {Example AI Service Workflow to obtain data, train, upload data for prediction, as well as the interaction with it.}
+  {fig:1}
+
+\subsection{Multi-Cloud Hosted AI Service}
+
+In our next scenario, we like to depict that it is possible to deploy
+the same service on multiple clouds through the use of our
+sophisticated but easy to use command clients. Detailed information
+about the exact commands are provided in our
+manual \cite{cloudmesh-manual}. Through this we can, for example,
+evaluate suitable providers for our deployment through benchmarking
+the service execution on each provider. This is precisely what we will
+be showcasing in our benchmark section and demonstrate this approach's
+feasibility. Thus the scientist not only obtains the ability with GAS
+Generator to develop and deploy services, but also to evaluate their
+performance on a variety of infrastructures. An example is provided
+in \Figure{fig:2} where a scientist deploys, for example, a service on
+AWS, Azure, and Google. As they are asynchronous services, the
+scientist can query the services simultaneously and gathers responses
+and benchmarks. Obviously, this can be used in a real scenario to
+integrate compute resources from multiple providers that can be
+accessed via our GAS services. It also allows specific adaptations
+such as the integration of cloud AI services with one provider that
+are not accessible in another. Hence the framework can also be
+utilized to benchmark secondary services that are offered by a
+particular provider, or if they are offered by more than one, they can
+be comparatively evaluated.
+
+
+\OneFIGURE
+  {architecture-openapi-2.pdf}
+  {Mult-Cloud AI Services: A client simultaneously accesses an AI service hosted
+   on three separate cloud providers, AWS, Azure, and Google, to benchmark
+   provider performance.}
+  {fig:2}
+ 
 
 \section{Benchmark}
 \label{sec:benchmark}
@@ -263,39 +900,62 @@ In this section we describe our benchmark results.
 
 \subsection{Infrastructure}
 
-For a comparison of our services, we want to compare service deployments on virtual machines that are hosted on various cloud providers. We have chosen to select similar virtual machines for conducting the benchmark. This includes AWS \cite{www-aws}, Azure\cite{www-azure}, and Google \cite{www-google}. 
+For a comparison of our services, we want to compare service
+deployments on virtual machines that are hosted on various cloud
+providers. We have chosen to select similar virtual machines for
+conducting the benchmark. This includes AWS \cite{www-aws},
+Azure\cite{www-azure}, and Google \cite{www-google}.
 
-In addition, we are performing some bare metal experiments on two Raspberry PI clusters, one with Raspberry PI4's and the other with Raspberry PI 3b+'s. The latter has a management node, a PI 4, and worker nodes that are PI 3b+. The inclusion of the Raspberry platform was important to us as it demonstrates the capability of IoT and Edge computing devices that may become more prevalent in the future for delegating tasks to the edge. We further provide a docker container for a comparison of containerized services.
+In addition, we are performing some bare metal experiments on two
+Raspberry PI clusters, one with Raspberry PI4's and the other with
+Raspberry PI 3b+'s. The latter has a management node, a PI 4, and
+worker nodes that are PI 3b+. The inclusion of the Raspberry platform
+was important to us as it demonstrates the capability of IoT and Edge
+computing devices that may become more prevalent in the future for
+delegating tasks to the edge. We further provide a docker container
+for a comparison of containerized services.
 
 
 \subsection{Application}
 
-We developed benchmark tests that are pytest replications of Scikit-learn artificial intelligent algorithms. These pytests are then run on different cloud services to benchmark statistics on how they perform. 
+We developed benchmark tests that are pytest replications of
+Scikit-learn artificial intelligent algorithms. These pytests are then
+run on different cloud services to benchmark statistics on how they
+perform.
 
-The team obtained cloud service
-accounts from AWS, Azure, Google, and OpenStack. To deploy the pytests,
-the team used \Cloudmesh and its OpenAPI based REST services to
-benchmark the performance on different cloud services. 
+The team obtained cloud service accounts from AWS, Azure, Google, and
+OpenStack. To deploy the pytests, the team used \Cloudmesh and its
+OpenAPI based REST services to benchmark the performance on different
+cloud services.
 
-Benchmarks include components like data transfer time, model train time, model prediction time, and more. Besides this report, scripts and other code are provided for others to replicate our tests.
+Benchmarks include components like data transfer time, model train
+time, model prediction time, and more. Besides this report, scripts
+and other code are provided for others to replicate our tests.
 
 We provide two example benchmarks for the Eigenfaces SVM example. The
-first deploys and measures the AI service on a single cloud provider at
-a time (see \ref{single-cloud-provider-service-benchmarking}), and the second deploys a multi-cloud (see \ref{sec-multi-benchmark}) AI service measuring the service across the clouds in parallel.
+first deploys and measures the AI service on a single cloud provider
+at a time (see \ref{single-cloud-provider-service-benchmarking}), and
+the second deploys a multi-cloud (see \ref{sec-multi-benchmark}) AI
+service measuring the service across the clouds in parallel.
 
 
 \subsection{Algorithms and Datasets}
 \label{sec:algorithms-and-datasets}
 
-This project uses a simple example algorithm and dataset. We have chosen to use an example included in Scikit-learn as they are
-widely known and can be used by others to replicate our benchmarks
-easily. Nevertheless, it will be possible to easily integrate other data
-sources, as well as algorithms, due to the generative nature of our code base for creating REST services. Within Scikit-learn we have chosen the {\bf\em Eigenfaces SVM Facial Recognition} example as it represents a very common data science usage pattern. This example conducts a facial recognition
-that first utilizes principle component analysis (PCA) to
-generate eigenfaces from the training image data, and then trains and
-tests an SVM model \cite{www-skikit-learn-faces}. This example uses the real world {\em Labeled Faces in the Wild} dataset
-consisting of labeled images of famous individuals gathered from the
-internet \cite{faces-data}.
+This project uses a simple example algorithm and dataset. We have
+chosen to use an example included in Scikit-learn as they are widely
+known and can be used by others to replicate our benchmarks
+easily. Nevertheless, it will be possible to easily integrate other
+data sources, as well as algorithms, due to the generative nature of
+our code base for creating REST services. Within Scikit-learn we have
+chosen the {\bf\em Eigenfaces SVM Facial Recognition} example as it
+represents a very common data science usage pattern. This example
+conducts a facial recognition that first utilizes principle component
+analysis (PCA) to generate eigenfaces from the training image data,
+and then trains and tests an SVM
+model \cite{www-skikit-learn-faces}. This example uses the real world
+{\em Labeled Faces in the Wild} dataset consisting of labeled images
+of famous individuals gathered from the internet \cite{faces-data}.
 
 
 %  \textbf{Pipelined ANOVA SVM}: An example code that shows a pipeline
@@ -306,21 +966,24 @@ internet \cite{faces-data}.
 \subsection{VM Selection}\label{vm-selection}
 
 When benchmarking cloud performance, it is important to identify and
-control VM deployment parameters. This allows one to analyze comparable service offerings, or identify
-opportunities for performance improvement by varying deployment features
-such as machine size, location, network, or storage hardware. These
-benchmark examples aimed to create similar machines across all three clouds, and
-measure their service performance. See \Table{tab:iaas} for a summary of the parameters
-controlled in these benchmark examples.
+control VM deployment parameters. This allows one to analyze
+comparable service offerings, or identify opportunities for
+performance improvement by varying deployment features such as machine
+size, location, network, or storage hardware. These benchmark examples
+aimed to create similar machines across all three clouds, and measure
+their service performance. See \Table{tab:iaas} for a summary of the
+parameters controlled in these benchmark examples.
 
 One key component is the virtual machine size, which determines the
 number of vCPUs, the amount of memory, attached storage types, and
 resource sharing policies. Resource sharing policies include shared
-core machine varieties—which providers offer at less expensive rates—that allow the virtual machines to burst over its base clock rate in
-exchange for credits or the machine's inherent bursting factor
+core machine varieties—which providers offer at less expensive
+rates—that allow the virtual machines to burst over its base clock
+rate in exchange for credits or the machine's inherent bursting factor
 \cite{amazon-instances,google-instances}. For this example, we chose
-three similar machine sizes that had comparable: vCPUs, underlying processors, memory, price, and were not a shared core variety. We installed the same Ubuntu 20.04 operating system on all
-three clouds.
+three similar machine sizes that had comparable: vCPUs, underlying
+processors, memory, price, and were not a shared core variety. We
+installed the same Ubuntu 20.04 operating system on all three clouds.
 
 Another factor that can affect performance, particularly in network
 latency, is the zone and region selected. We deploy all benchmark
@@ -331,8 +994,16 @@ services.
 
 %\rowcolors{2}{gray!25}{white}
 
-Because cloud providers can observe varying loads during the day, the benchmark execution time is another parameter to control. In our single cloud provider benchmark for the Eigenfaces SVM example, clouds were tested at least twice and were run sequentially between the hours of approximately 19:45 EST and 03:30 EST starting with Google and ending with Azure. In the Eigenfaces SVM example, only 60 runs were
-conducted on Azure due to a failed VM deployment caused by factors outside of the benchmark script's control. Compared to our single cloud provider benchmark, our multi-cloud benchmark benefits from all clouds being tested at the same time.
+Because cloud providers can observe varying loads during the day, the
+benchmark execution time is another parameter to control. In our
+single cloud provider benchmark for the Eigenfaces SVM example, clouds
+were tested at least twice and were run sequentially between the hours
+of approximately 19:45 EST and 03:30 EST starting with Google and
+ending with Azure. In the Eigenfaces SVM example, only 60 runs were
+conducted on Azure due to a failed VM deployment caused by factors
+outside of the benchmark script's control. Compared to our single
+cloud provider benchmark, our multi-cloud benchmark benefits from all
+clouds being tested at the same time.
 
 \begin{table}
   
@@ -386,9 +1057,9 @@ Price (\$/hr) &  0.0065 & 0.0133 & NA & NA\tabularnewline
 }
 
 
-\smallskip 
-{\footnotesize 
-The Price is the purchase cost and 1yr energy cost, amortized over a year and given for each hour of the year.}
+\smallskip
+{\footnotesize The Price is the purchase cost and 1yr energy cost,
+amortized over a year and given for each hour of the year.}
 \end{table}
 
 \subsection{Single Cloud Provider AI Service Benchmark.}
@@ -396,10 +1067,14 @@ The Price is the purchase cost and 1yr energy cost, amortized over a year and gi
 
 The benchmark script for the Eigenfaces SVM example uses \Cloudmesh to
 create virtual machines and set up a \Cloudmesh OpenAPI environment
-sequentially across the three measured clouds, Amazon, Azure,
-and Google. After the script sets up the environment, it runs a series
-of pytests that generate and launch the Eigenfaces-SVM OpenAPI service,
-and then conducts runtime measurements of various service functions. Also, we run the same pytests on two Raspberry Pi models, a MacBook Pro running a Docker container, and a bare metal MacBook Pro to demonstrate \Cloudmesh OpenAPI's flexibility for multi-platform use.
+sequentially across the three measured clouds, Amazon, Azure, and
+Google. After the script sets up the environment, it runs a series of
+pytests that generate and launch the Eigenfaces-SVM OpenAPI service,
+and then conducts runtime measurements of various service
+functions. Also, we run the same pytests on two Raspberry Pi models, a
+MacBook Pro running a Docker container, and a bare metal MacBook Pro
+to demonstrate \Cloudmesh OpenAPI's flexibility for multi-platform
+use.
 
 The benchmark runs the pytest in two configurations. After the benchmark
 the script sets up a virtual machine environment, it runs the first pytest
@@ -420,7 +1095,9 @@ locally on the OpenAPI server and measures five runtimes:
   The time to predict and return the target label of the uploaded image
 \end{enumerate}
 
-The benchmark runs the second pytest iteration as a remote client and interacts with the deployed OpenAPI service over the internet. It tests two runtimes:
+The benchmark runs the second pytest iteration as a remote client and
+interacts with the deployed OpenAPI service over the internet. It
+tests two runtimes:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -431,10 +1108,16 @@ The benchmark runs the second pytest iteration as a remote client and interacts 
   return the target label of the uploaded image
 \end{enumerate}
 
-In \Figure{fig:download} we compare the download and extraction time of the labeled faces in the wild data set. This data set is approximately 233 MBs
-compressed, which allows us to measure a non-trivial data transfer.
-Lower transfer times imply the cloud has higher throughput from the data
-server, less latency to the data server, or that the cloud has a better performing internal network. The standard deviation is displayed to compare the variation in the download times. Because the difference between commercial and residential internet speeds dominates the function runtime, we do not compare the clouds to the Pi models, MacBook, or docker container.
+In \Figure{fig:download} we compare the download and extraction time
+of the labeled faces in the wild data set. This data set is
+approximately 233 MBs compressed, which allows us to measure a
+non-trivial data transfer.  Lower transfer times imply the cloud has
+higher throughput from the data server, less latency to the data
+server, or that the cloud has a better performing internal
+network. The standard deviation is displayed to compare the variation
+in the download times. Because the difference between commercial and
+residential internet speeds dominates the function runtime, we do not
+compare the clouds to the Pi models, MacBook, or docker container.
 \begin{comment}
 In  \Figure{fig:download} we show the same plot without the Pi and docker results to allow a closer comparison of the three comparable clouds.
 \end{comment}
@@ -454,13 +1137,21 @@ In  \Figure{fig:download} we show the same plot without the Pi and docker result
     {Runtime for downloading the data used in the Eigenfaces SVM benchmark.}
     {fig:download}
     
-In \Figure{fig:train_pi} we measure the training time of the Eigenfaces-SVM model both as an OpenAPI service and as the basic Scikit-learn example. This
-allows us to measure the runtime overhead added by OpenAPI compared to the
-source example. Here, the two functions are identical except that the
-OpenAPI train function makes an additional function call to store the
-model to disk. This is necessary to share the model across
-the train and predict functions. In the figure there are two bars per cloud provider. The blue bars are the training time of the model when hosted as a \Cloudmesh OpenAPI function. The
-orange bars are the training time of the Scikit-learn example code without \Cloudmesh OpenAPI involvement. The bars plot the mean runtimes and the error bar reflects the standard deviation of the runtimes. In  \Figure{fig:train} we show the same plot without the Pi models, MacBook, and docker results to allow a closer comparison of the three comparable clouds.
+In \Figure{fig:train_pi} we measure the training time of the
+Eigenfaces-SVM model both as an OpenAPI service and as the basic
+Scikit-learn example. This allows us to measure the runtime overhead
+added by OpenAPI compared to the source example. Here, the two
+functions are identical except that the OpenAPI train function makes
+an additional function call to store the model to disk. This is
+necessary to share the model across the train and predict
+functions. In the figure there are two bars per cloud provider. The
+blue bars are the training time of the model when hosted as
+a \Cloudmesh OpenAPI function. The orange bars are the training time
+of the Scikit-learn example code without \Cloudmesh OpenAPI
+involvement. The bars plot the mean runtimes and the error bar
+reflects the standard deviation of the runtimes. In \Figure{fig:train}
+we show the same plot without the Pi models, MacBook, and docker
+results to allow a closer comparison of the three comparable clouds.
 
 \TwoFIGURES
     {sample_graph_2_pi1.pdf}
@@ -471,15 +1162,17 @@ orange bars are the training time of the Scikit-learn example code without \Clou
     {fig:train}
 
 
-In \Figure{fig:upload_pi} we measure the time to upload an image to the server both
-from itself and from a remote client. This allows us to compare the
-function runtime as experienced by the server, and as experienced by a
-remote client. The difference helps determine the network latency
-between the benchmark client and the cloud service. In the figure, there are two bars per
-cloud provider. The blue bars are the runtime of the upload function as
-experienced by the server, and the orange as experienced by the remote
-client. The bars plot the mean runtimes and the error bar reflects the
-standard deviation of the runtimes. For the Pi models, MacBook, and docker container, we only measure the local function runtime.
+In \Figure{fig:upload_pi} we measure the time to upload an image to
+the server both from itself and from a remote client. This allows us
+to compare the function runtime as experienced by the server, and as
+experienced by a remote client. The difference helps determine the
+network latency between the benchmark client and the cloud service. In
+the figure, there are two bars per cloud provider. The blue bars are
+the runtime of the upload function as experienced by the server, and
+the orange as experienced by the remote client. The bars plot the mean
+runtimes and the error bar reflects the standard deviation of the
+runtimes. For the Pi models, MacBook, and docker container, we only
+measure the local function runtime.
 
 %\TwoFIGURES
 \OneFIGURE
@@ -490,7 +1183,15 @@ standard deviation of the runtimes. For the Pi models, MacBook, and docker conta
     %{Closeup of the Runtime for uploading the data used in the Eigenfaces SVM benchmark without the data for the Pi.}
     %{fig:upload}
 
-In \Figure{fig:predict_pi} we measure the time to call the predict function on the uploaded image. Again we run this once from the local server itself, and a second time from a remote client to determine client and server runtimes. In the figure, there are two bars per cloud provider. The blue bars are the run time of the predict function as experienced by the server, and the orange as experienced by the remote client. The bars plot mean runtimes and the error bar reflects the standard deviation of the runtimes. For the Pi models, MacBook, and docker container, we only measured the local function runtime.
+In \Figure{fig:predict_pi} we measure the time to call the predict
+function on the uploaded image. Again we run this once from the local
+server itself, and a second time from a remote client to determine
+client and server runtimes. In the figure, there are two bars per
+cloud provider. The blue bars are the run time of the predict function
+as experienced by the server, and the orange as experienced by the
+remote client. The bars plot mean runtimes and the error bar reflects
+the standard deviation of the runtimes. For the Pi models, MacBook,
+and docker container, we only measured the local function runtime.
 
 %\TwoFIGURES
 \OneFIGURE
@@ -501,9 +1202,25 @@ In \Figure{fig:predict_pi} we measure the time to call the predict function on t
     %{Closeup of the Runtime for the prediction used in the Eigenfaces SVM benchmark without the data for the Pi.}
     %{fig:predict}
 
-\Table{tab:2} presents a full listing of test results. For the upload and predict tests, the 'type' column denotes whether the test was run locally (server runtime) or remote (client runtime).
+\Table{tab:2} presents a full listing of test results. For the upload
+    and predict tests, the 'type' column denotes whether the test was
+    run locally (server runtime) or remote (client runtime). 
 
-In \Table{tab:cost} we present a cost analysis of the service functions. The analysis uses the price from \Table{tab:iaas} and \Table{tab:pi}. The price for the cloud virtual machines are based on provider advertised costs, while the price for the Pi models are based on the hardware cost and one year of energy cost amortized for one year. This does not include other costs such as cooling, networking, or real estate. For the Pi energy cost we assume a full and constant load. We utilize power consumption benchmarks from \cite{pi-power} and Indiana residential kWH cost from \cite{indiana-energy} to calculate the expected Energy Cost per year. We calculate the cost to run each function and compare the clouds and Raspberry Pi 4 to the Raspberry Pi 3b+. We compare the percent runtime decrease from the Pi 3b+ to the clouds and Raspberry Pi4, and the percent cost increase from the Pi 3b+ to the clouds and Raspberry Pi 4.
+In \Table{tab:cost} we present a cost analysis of the service
+functions. The analysis uses the price from \Table{tab:iaas}
+and \Table{tab:pi}. The price for the cloud virtual machines are based
+on provider advertised costs, while the price for the Pi models are
+based on the hardware cost and one year of energy cost amortized for
+one year. This does not include other costs such as cooling,
+networking, or real estate. For the Pi energy cost we assume a full
+and constant load. We utilize power consumption benchmarks
+from \cite{pi-power} and Indiana residential kWH cost
+from \cite{indiana-energy} to calculate the expected Energy Cost per
+year. We calculate the cost to run each function and compare the
+clouds and Raspberry Pi 4 to the Raspberry Pi 3b+. We compare the
+percent runtime decrease from the Pi 3b+ to the clouds and Raspberry
+Pi4, and the percent cost increase from the Pi 3b+ to the clouds and
+Raspberry Pi 4.
 
 \begin{comment}
 
@@ -694,17 +1411,25 @@ OpenAPI, and launches the Eigenfaces SVM AI service on three separate
 cloud providers. Because \Cloudmesh has limited parallel computing
 support, the script deploys the VMs in a serial manner. After the
 services are running, we then run our tests in a parallel manner as
-depicted in \Figure{fig:2}. Testing in parallel provides faster benchmark
-results and better equalizes benchmark testing conditions. The
-benchmark conducts requests to each cloud in parallel, so they experience similar network conditions. For example, in a serial testing
-model when downloading data from a remote server, the remote server may experience varying loads which will ultimately result in different throughputs for the various tests. Our parallel tests better equalize these conditions by having each cloud download the data under the same network conditions.
+depicted in \Figure{fig:2}. Testing in parallel provides faster
+benchmark results and better equalizes benchmark testing
+conditions. The benchmark conducts requests to each cloud in parallel,
+so they experience similar network conditions. For example, in a
+serial testing model when downloading data from a remote server, the
+remote server may experience varying loads which will ultimately
+result in different throughputs for the various tests. Our parallel
+tests better equalize these conditions by having each cloud download
+the data under the same network conditions.
 
-In the benchmark, we compute the means from 30 runs of a workflow that includes one download data invocation, one train invocation,
-30 upload invocations, and 30 predict invocations. We run the workflows
-in parallel on the separate clouds using multiprocessing on an eight-core
+In the benchmark, we compute the means from 30 runs of a workflow that
+includes one download data invocation, one train invocation, 30 upload
+invocations, and 30 predict invocations. We run the workflows in
+parallel on the separate clouds using multiprocessing on an eight-core
 machine.
 
-In \Figure{fig:7} we depict the combined runtime of our benchmark tests. This allows us to compare the complete execution time of an AI service workflow.
+In \Figure{fig:7} we depict the combined runtime of our benchmark
+tests. This allows us to compare the complete execution time of an AI
+service workflow.
 
 \OneFIGURE
     {ai_service_workflow_runtime.png}
@@ -732,22 +1457,49 @@ features, such as virtual machine delete, are implemented or verified.
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper has introduced a framework and tool called GAS Generator that allows data scientists not experienced enough with REST and/or OpenAPI to generate REST services from python functions quickly. The overall time for deploying the resulting service was reduced from several months by inexperienced data scientists to under a week. The service can be provisioned on public clouds and shared with other users. Authentication is built into our framework while leveraging common REST service practices. 
-In a small benchmark executed on the various cloud providers as well as local hardware, including Raspberry PIs, we have seen that the cloud providers, when using similar resources and images, perform similarly. To compare the services with IoT devices such as Raspberry PI 3b+ and 4 we have chosen a small enough example that can be conducted on them and can be used as a reference to other IoT devices in the future. We found especially that in the case of the PI 4, the performance was quite good for our example. We also provided a cost-performance analysis to compare the IoT devices with the cost used on the cloud to conduct the task over a year's worth of activities. We find that the PI is surprisingly cost-effective.
+This paper has introduced a framework and tool called GAS Generator
+that allows data scientists not experienced enough with REST and/or
+OpenAPI to generate REST services from Python functions quickly. The
+overall time for deploying the resulting service was reduced from
+several months by inexperienced data scientists to under a week. The
+service can be provisioned on public clouds and shared with other
+users. Authentication is built into our framework while leveraging
+common REST service practices.  In a small benchmark executed on the
+various cloud providers as well as local hardware, including Raspberry
+PIs, we have seen that the cloud providers, when using similar
+resources and images, perform similarly. To compare the services with
+IoT devices such as Raspberry PI 3b+ and 4 we have chosen a small
+enough example that can be conducted on them and can be used as a
+reference to other IoT devices in the future. We found especially that
+in the case of the PI 4, the performance was quite good for our
+example. We also provided a cost-performance analysis to compare the
+IoT devices with the cost used on the cloud to conduct the task over a
+year's worth of activities. We find that the PI is surprisingly
+cost-effective.
 
-However, our most significant gain from this project is the reduction in manpower and entry barrier it takes to create and deploy our AI services. Due to the generalized approach while using python function developers and data scientists can naturally integrate more complex tasks as well as tasks that leverage cloud-specific AI services that are uniquely offered by particular providers. GAS Generator is an open-source project, and we appreciate contributions to the project. Please contact the first author at  \textit{laszewski\@gmail.com}.
+However, our most significant gain from this project is the reduction
+in manpower and entry barrier it takes to create and deploy our AI
+services. Due to the generalized approach while using Python function
+developers and data scientists can naturally integrate more complex
+tasks as well as tasks that leverage cloud-specific AI services that
+are uniquely offered by particular providers. \censor{GAS Generator} is an
+open-source project, and we appreciate contributions to the
+project. Please contact the first author
+at \censor{\textit{laszewski\@gmail.com}}.
 
 
 \section*{Acknowledgment}
 
-We like to thank
-\censor{
-Brian Kegerreis,
-Jonathan Beckford,
-Jagadeesh Kandimalla,
-Prateek Shaw,
-Ishan Mishra,
-Fugang Wang, and Andrew Goldfarb for developing the Python REST service generator on which this work is based on. We like to thank Caleb Wilson for his contributions to this project. We also like to thank the more than 70 contributors to the cloudmesh toolkit for developing the various cloud providers. We would like to thank the NBDIF working group for their contributions in discussions that lead to the development of this effort.}
+\BLOCKCENSOR{A large section was removed to fulfull double
+blind review conditions.}{We like to thank Brian Kegerreis, Jonathan
+Beckford, Jagadeesh Kandimalla, Prateek Shaw, Ishan Mishra, Fugang
+Wang, and Andrew Goldfarb for developing the Python REST service
+generator on which this work is based on. We like to thank Caleb
+Wilson for his contributions to this project. We also like to thank
+the more than 70 contributors to the cloudmesh toolkit for developing
+the various cloud providers. We would like to thank the NBDIF working
+group for their contributions in discussions that lead to the
+development of this effort.} 
 
 
 
