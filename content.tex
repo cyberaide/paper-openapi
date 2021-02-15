@@ -125,17 +125,18 @@ exists a reference implementatio has not been developed by NIST
 \begin{figure}[htb]
 \centering
 
-\includegraphics[width=1.0\columnwidth]{images/NIST_RA_latest-crop.pdf}
+\includegraphics[width=1.0\columnwidth]{images/NIST-RA-latest-crop.pdf}
 
 \caption{NIST Big Data Reference Architecture \cite{nist-v8}}
 
 \label{fig:bdra}
 \end{figure}
 
-Volume 8 is of especial importance as it provides a
+\COMMENT{Volume 8 is of especial importance as it provides a
 blueprint for interfaces to address the needs of a generalized Big Data
-Architecture as summarized in \censor{~\cite{cloudmesh-openapi}\cite{las20book-cloudeng}}}.
-This
+Architecture as summarized in~\cite{cloudmesh-openapi}\cite{las20book-cloudeng}.}
+
+In contrast to the NIST effort, our
 effort builds the theoretical basis of needed activities while
 expanding it to cloud providers and services focusing on {\em
 Analytics Services}. 
@@ -617,6 +618,7 @@ used it as part of our benchmarks that we describe later.
     {openapi-arch-new-2.pdf}
     {Layered architecture of the cloudmesh OpenAPI framework.}
     {fig:arch-new}
+    {1.0}
 
 \subsection{GAS Workflow}
 
@@ -822,14 +824,14 @@ authentication into our framework as an example
 configuration. However, it is certainly possible to extend this as the
 services we use also support OAuth, ApiKey Authentication, Bearer
 Authentication (JWT), and HTTPS
-support \cite{connexion-security}\cite{cloudmesh-openapi}.
+support \cite{connexion-security}\censor{\cite{cloudmesh-openapi}}.
 
 To demonstrate basic authentication, a cloudmesh user can create an
 OpenAPI server whose endpoints are only accessible as an authorized
 user. Currently, when basic auth is used, all endpoints are secured
 with this method. In future versions, we intend to allow securing
 selected methods.  An example of the usage of basic auth is provided
-on our Web page at \cite{www-cloudmesh-openapi-security}.
+on our Web page at \censor{\cite{www-cloudmesh-openapi-security}}.
 
 \section{Deployment Scenarios}
 
@@ -840,7 +842,7 @@ service provider deployments are discussed next.
 
 \subsection{Single Cloud Provider Hosted AI Service}
 
-In this scenario, a user deploys Cloudmesh OpenAPI on a virtual
+In this scenario, a user deploys GAS services on a virtual
 machine from a cloud provider and uses it to host auto-generated,
 RESTful, AI services. Next, the scientist constructs an AI service as
 a set of Python functions that implement a workflow, for example,
@@ -849,58 +851,80 @@ a new sample for prediction, and running a prediction on that
 sample. After the deployment, the service is accessible using standard
 HTTP request methods. In \Figure{fig:1} we show a remote client that
 accesses such a typical AI service workflow.  Here the service is just
-deployed on a virtual machine from a single cloud provider. Cloudmesh
+deployed on a virtual machine from a single cloud provider. GAS
 provides the choice on which infrastructure provider to place the
 service. Through our security mechanism, the service can either be
 exposed to the public or to authenticated and authorized users.
 
 \OneFIGURE
-  {architecture-openapi-1.pdf}
+  {gas-1.pdf}
   {Example AI Service Workflow to obtain data, train, upload data for prediction, as well as the interaction with it.}
   {fig:1}
-
+  {0.5}
+    
 \subsection{Multi-Cloud Hosted AI Service}
 
 In our next scenario, we like to depict that it is possible to deploy
 the same service on multiple clouds through the use of our
 sophisticated but easy to use command clients. Detailed information
 about the exact commands are provided in our
-manual \cite{cloudmesh-manual}. Through this we can, for example,
-evaluate suitable providers for our deployment through benchmarking
-the service execution on each provider. This is precisely what we will
-be showcasing in our benchmark section and demonstrate this approach's
-feasibility. Thus the scientist not only obtains the ability with GAS
-Generator to develop and deploy services, but also to evaluate their
-performance on a variety of infrastructures. An example is provided
-in \Figure{fig:2} where a scientist deploys, for example, a service on
-AWS, Azure, and Google. As they are asynchronous services, the
-scientist can query the services simultaneously and gathers responses
-and benchmarks. Obviously, this can be used in a real scenario to
-integrate compute resources from multiple providers that can be
-accessed via our GAS services. It also allows specific adaptations
-such as the integration of cloud AI services with one provider that
-are not accessible in another. Hence the framework can also be
-utilized to benchmark secondary services that are offered by a
+manual \censor{\cite{cloudmesh-manual}}. Through this we can, for
+example, evaluate suitable providers for our deployment through
+benchmarks as we show next. Thus, the scientist not only obtains the
+ability with GAS Generator to develop and deploy services, but also to
+evaluate their performance on a variety of infrastructures. An example
+is provided in \Figure{fig:2} where a scientist deploys
+a service on AWS, Azure, and Google. As they are asynchronous
+services, the scientist can query the services simultaneously and
+gathers responses and benchmarks. Obviously, this can be used in a
+real scenario to integrate compute resources from multiple providers
+that can be accessed via our GAS services. It also allows specific
+adaptations such as the integration of cloud AI services with one
+provider that are not accessible in another. Hence the framework can
+also be utilized to benchmark unique services that are offered by a
 particular provider, or if they are offered by more than one, they can
 be comparatively evaluated.
 
 
 \OneFIGURE
-  {architecture-openapi-2.pdf}
+  {gas-2.pdf}
   {Mult-Cloud AI Services: A client simultaneously accesses an AI service hosted
    on three separate cloud providers, AWS, Azure, and Google, to benchmark
    provider performance.}
   {fig:2}
- 
+  {0.5}
 
 \section{Benchmark}
 \label{sec:benchmark}
 
 In this section we describe our benchmark results.
 
+\subsection{Application}
+
+Our benchmarks are based on pytests that integrate Scikit-learn
+artificial intelligent algorithms to allow replication. These pytests
+are run on different cloud services to benchmark end evaluate how they
+perform. The Benchmarks include services to conduct data transfers,
+model train, model prediction, and more. A report is automatically generated. 
+
+Within Scikit-learn we have chosen the {\bf\em Eigenfaces SVM Facial
+Recognition} example as it represents a very common data science usage
+pattern. This example conducts a facial recognition that first
+utilizes principle component analysis (PCA) to generate eigenfaces
+from the training image data, and then trains and tests an SVM
+model \cite{www-skikit-learn-faces}. It uses the real world
+{\em Labeled Faces in the Wild} dataset consisting of labeled images
+of famous individuals gathered from the internet \cite{faces-data}.
+
+This project uses deafault datasest from Scikit-learn to allow others
+to easily test and replicate the GAS approach. While using these
+examples, it will be possible to easily adpt it to use other data
+sources, as well as algorithms.
+
+
 \subsection{Infrastructure}
 
-For a comparison of our services, we want to compare service
+We want to compare service
 deployments on virtual machines that are hosted on various cloud
 providers. We have chosen to select similar virtual machines for
 conducting the benchmark. This includes AWS \cite{www-aws},
@@ -915,47 +939,13 @@ computing devices that may become more prevalent in the future for
 delegating tasks to the edge. We further provide a docker container
 for a comparison of containerized services.
 
-
-\subsection{Application}
-
-We developed benchmark tests that are pytest replications of
-Scikit-learn artificial intelligent algorithms. These pytests are then
-run on different cloud services to benchmark statistics on how they
-perform.
-
-The team obtained cloud service accounts from AWS, Azure, Google, and
-OpenStack. To deploy the pytests, the team used \Cloudmesh and its
-OpenAPI based REST services to benchmark the performance on different
-cloud services.
-
-Benchmarks include components like data transfer time, model train
-time, model prediction time, and more. Besides this report, scripts
-and other code are provided for others to replicate our tests.
-
-We provide two example benchmarks for the Eigenfaces SVM example. The
-first deploys and measures the AI service on a single cloud provider
-at a time (see \ref{single-cloud-provider-service-benchmarking}), and
-the second deploys a multi-cloud (see \ref{sec-multi-benchmark}) AI
-service measuring the service across the clouds in parallel.
-
-
-\subsection{Algorithms and Datasets}
-\label{sec:algorithms-and-datasets}
-
-This project uses a simple example algorithm and dataset. We have
-chosen to use an example included in Scikit-learn as they are widely
-known and can be used by others to replicate our benchmarks
-easily. Nevertheless, it will be possible to easily integrate other
-data sources, as well as algorithms, due to the generative nature of
-our code base for creating REST services. Within Scikit-learn we have
-chosen the {\bf\em Eigenfaces SVM Facial Recognition} example as it
-represents a very common data science usage pattern. This example
-conducts a facial recognition that first utilizes principle component
-analysis (PCA) to generate eigenfaces from the training image data,
-and then trains and tests an SVM
-model \cite{www-skikit-learn-faces}. This example uses the real world
-{\em Labeled Faces in the Wild} dataset consisting of labeled images
-of famous individuals gathered from the internet \cite{faces-data}.
+For this work we provide two application benchmarks for the Eigenfaces
+SVM. We have chosen this example to demonstrate the feasability of the
+GAS framework.  The first deploys and measures the AI service on a
+single cloud provider at a time
+(see \ref{single-cloud-provider-service-benchmarking}), and the second
+deploys a multi-cloud (see \ref{sec-multi-benchmark}) AI service
+measuring the service across the clouds in parallel.
 
 
 %  \textbf{Pipelined ANOVA SVM}: An example code that shows a pipeline
@@ -998,10 +988,10 @@ Because cloud providers can observe varying loads during the day, the
 benchmark execution time is another parameter to control. In our
 single cloud provider benchmark for the Eigenfaces SVM example, clouds
 were tested at least twice and were run sequentially between the hours
-of approximately 19:45 EST and 03:30 EST starting with Google and
-ending with Azure. In the Eigenfaces SVM example, only 60 runs were
+of approximately 19:45 pm EST and 03:30 am EST. \COMMENT{starting with Google and
+ending with Azure.} \COMMENT{In the Eigenfaces SVM example, only 60 runs were
 conducted on Azure due to a failed VM deployment caused by factors
-outside of the benchmark script's control. Compared to our single
+outside of the benchmark script's control.} Compared to our single
 cloud provider benchmark, our multi-cloud benchmark benefits from all
 clouds being tested at the same time.
 
@@ -1066,7 +1056,7 @@ amortized over a year and given for each hour of the year.}
 \label{single-cloud-provider-service-benchmarking}
 
 The benchmark script for the Eigenfaces SVM example uses \Cloudmesh to
-create virtual machines and set up a \Cloudmesh OpenAPI environment
+create virtual machines and set up the GAS OpenAPI services
 sequentially across the three measured clouds, Amazon, Azure, and
 Google. After the script sets up the environment, it runs a series of
 pytests that generate and launch the Eigenfaces-SVM OpenAPI service,
@@ -1111,7 +1101,7 @@ tests two runtimes:
 In \Figure{fig:download} we compare the download and extraction time
 of the labeled faces in the wild data set. This data set is
 approximately 233 MBs compressed, which allows us to measure a
-non-trivial data transfer.  Lower transfer times imply the cloud has
+relatively small but non-trivial data transfer.  Lower transfer times imply the cloud has
 higher throughput from the data server, less latency to the data
 server, or that the cloud has a better performing internal
 network. The standard deviation is displayed to compare the variation
@@ -1119,25 +1109,27 @@ in the download times. Because the difference between commercial and
 residential internet speeds dominates the function runtime, we do not
 compare the clouds to the Pi models, MacBook, or docker container.
 \begin{comment}
-In  \Figure{fig:download} we show the same plot without the Pi and docker results to allow a closer comparison of the three comparable clouds.
+In  \Figure{fig:download} we show the same plot without the Pi and
+docker results to allow a closer comparison of the three comparable clouds.
 \end{comment}
 
 \begin{comment}
 \TwoFIGURES
-    {sample_graph_1_pi1.pdf}
+    {sample-graph-1-pi1.pdf}
     {Runtime for downloading the data used in the Eigenfaces SVM benchmark.}
-    {fig:download_pi}
-    {sample_graph_1.pdf}
+    {fig:download-pi}
+    {sample-graph-1.pdf}
     {Closeup of the Runtime for downloading the data used in the Eigenfaces SVM benchmark while excluding the runtime for the Raspberry PI.}
     {fig:download}
 \end{comment}
 
 \OneFIGURE
-    {sample_graph_1.pdf}
+    {sample-graph-1.pdf}
     {Runtime for downloading the data used in the Eigenfaces SVM benchmark.}
     {fig:download}
+    {1.0}
     
-In \Figure{fig:train_pi} we measure the training time of the
+In \Figure{fig:train-pi} we depict the training time of the
 Eigenfaces-SVM model both as an OpenAPI service and as the basic
 Scikit-learn example. This allows us to measure the runtime overhead
 added by OpenAPI compared to the source example. Here, the two
@@ -1149,20 +1141,26 @@ blue bars are the training time of the model when hosted as
 a \Cloudmesh OpenAPI function. The orange bars are the training time
 of the Scikit-learn example code without \Cloudmesh OpenAPI
 involvement. The bars plot the mean runtimes and the error bar
-reflects the standard deviation of the runtimes. In \Figure{fig:train}
+reflects the standard deviation of the runtimes.
+
+\COMMENT{In \Figure{fig:train}
 we show the same plot without the Pi models, MacBook, and docker
-results to allow a closer comparison of the three comparable clouds.
+results to allow a closer comparison of the three comparable clouds.}
 
-\TwoFIGURES
-    {sample_graph_2_pi1.pdf}
-    {Runtime for training on the data used in the Eigenfaces SVM benchmark.}
-    {fig:train_pi}
-    {sample_graph_2.pdf}
-    {Closeup of the Runtime for training on  the data used in the Eigenfaces SVM benchmark without the data for the Pi.}
-    {fig:train}
+%\TwoFIGURES
+
+\OneFIGURES
+    {sample-graph-2-pi1.pdf}
+    {XXXX Runtime for training on the data used in the Eigenfaces SVM benchmark.}
+    {fig:train-pi}
+    {1.0}
+    
+    %{sample-graph-2.pdf}
+    %{Closeup of the Runtime for training on  the data used in the Eigenfaces SVM benchmark without the data for the Pi.}
+    %{fig:train}
 
 
-In \Figure{fig:upload_pi} we measure the time to upload an image to
+In \Figure{fig:upload-pi} we present the time to upload an image to
 the server both from itself and from a remote client. This allows us
 to compare the function runtime as experienced by the server, and as
 experienced by a remote client. The difference helps determine the
@@ -1176,29 +1174,34 @@ measure the local function runtime.
 
 %\TwoFIGURES
 \OneFIGURE
-    {sample_graph_3_pi1.pdf}
+    {sample-graph-3-pi1.pdf}
     {Runtime for uploading the data used in the Eigenfaces SVM benchmark.}
-    {fig:upload_pi}
-    %{sample_graph_3.pdf}
+    {fig:upload-pi}
+    {1.0}
+    
+    %{sample-graph-3.pdf}
     %{Closeup of the Runtime for uploading the data used in the Eigenfaces SVM benchmark without the data for the Pi.}
     %{fig:upload}
 
-In \Figure{fig:predict_pi} we measure the time to call the predict
+In \Figure{fig:predict-pi} we measure the time to call the predict
 function on the uploaded image. Again we run this once from the local
 server itself, and a second time from a remote client to determine
 client and server runtimes. In the figure, there are two bars per
 cloud provider. The blue bars are the run time of the predict function
 as experienced by the server, and the orange as experienced by the
-remote client. The bars plot mean runtimes and the error bar reflects
+remote client to measuer its overhead. The bars plot mean runtimes and
+the error bar reflects
 the standard deviation of the runtimes. For the Pi models, MacBook,
 and docker container, we only measured the local function runtime.
 
 %\TwoFIGURES
 \OneFIGURE
-    {sample_graph_4_pi1.pdf}
+    {sample-graph-4-pi1.pdf}
     {Runtime for the prediction used in the Eigenfaces SVM benchmark.}
-    {fig:predict_pi}
-    %{sample_graph_4.pdf}
+    {fig:predict-pi}
+    {1.0}
+
+    %{sample-graph-4.pdf}
     %{Closeup of the Runtime for the prediction used in the Eigenfaces SVM benchmark without the data for the Pi.}
     %{fig:predict}
 
@@ -1214,7 +1217,7 @@ based on the hardware cost and one year of energy cost amortized for
 one year. This does not include other costs such as cooling,
 networking, or real estate. For the Pi energy cost we assume a full
 and constant load. We utilize power consumption benchmarks
-from \cite{pi-power} and Indiana residential kWH cost
+from \cite{pi-power} and \censor{Indiana} residential kWH cost
 from \cite{indiana-energy} to calculate the expected Energy Cost per
 year. We calculate the cost to run each function and compare the
 clouds and Raspberry Pi 4 to the Raspberry Pi 3b+. We compare the
@@ -1408,10 +1411,10 @@ upload 	      & remote & google &  8.87 &  5.39 & 15.44 & 4.52 \\
 
 In this benchmark, our script first acquires VMs, installs \Cloudmesh
 OpenAPI, and launches the Eigenfaces SVM AI service on three separate
-cloud providers. Because \Cloudmesh has limited parallel computing
-support, the script deploys the VMs in a serial manner. After the
+cloud providers. \COMMENT{Because \Cloudmesh has limited parallel computing
+support, the script deploys the VMs in a serial manner.} After the
 services are running, we then run our tests in a parallel manner as
-depicted in \Figure{fig:2}. Testing in parallel provides faster
+depicted in \Figure{fig:2}. \COMMENT{Testing in parallel provides faster
 benchmark results and better equalizes benchmark testing
 conditions. The benchmark conducts requests to each cloud in parallel,
 so they experience similar network conditions. For example, in a
@@ -1419,7 +1422,7 @@ serial testing model when downloading data from a remote server, the
 remote server may experience varying loads which will ultimately
 result in different throughputs for the various tests. Our parallel
 tests better equalize these conditions by having each cloud download
-the data under the same network conditions.
+the data under the same network conditions.}
 
 In the benchmark, we compute the means from 30 runs of a workflow that
 includes one download data invocation, one train invocation, 30 upload
@@ -1432,11 +1435,12 @@ tests. This allows us to compare the complete execution time of an AI
 service workflow.
 
 \OneFIGURE
-    {ai_service_workflow_runtime.png}
+    {ai-service-workflow-runtime.png}
     {Mean runtime of the Eigenfaces SVM workflow deployed
      as a multi-cloud service.}
     {fig:7}
-
+    {1.0}
+    
 In \Table{tab:3} we provide complete test results for the multi-cloud benchmark.
 
 \begin{comment}
@@ -1448,11 +1452,14 @@ In \Table{tab:3} we provide complete test results for the multi-cloud benchmark.
 \subsection{Caleb Example}\label{caleb-example}
 \end{comment}
 
+\COMMENT{
 \section{Limitations}\label{limitations}
 
 Azure has updated their libraries and discontinued the version 4.0 Azure
 libraries. We updated \Cloudmesh to use the new library, but not all
 features, such as virtual machine delete, are implemented or verified.
+}
+
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -1461,10 +1468,12 @@ This paper has introduced a framework and tool called GAS Generator
 that allows data scientists not experienced enough with REST and/or
 OpenAPI to generate REST services from Python functions quickly. The
 overall time for deploying the resulting service was reduced from
-several months by inexperienced data scientists to under a week. The
+several months by inexperienced data scientists to about one hour
+(excluding the time it takes to apply for cloud accounts). The
 service can be provisioned on public clouds and shared with other
 users. Authentication is built into our framework while leveraging
-common REST service practices.  In a small benchmark executed on the
+common REST service practices leveraging existing frameworks.
+In a small benchmark executed on the
 various cloud providers as well as local hardware, including Raspberry
 PIs, we have seen that the cloud providers, when using similar
 resources and images, perform similarly. To compare the services with
@@ -1474,15 +1483,15 @@ reference to other IoT devices in the future. We found especially that
 in the case of the PI 4, the performance was quite good for our
 example. We also provided a cost-performance analysis to compare the
 IoT devices with the cost used on the cloud to conduct the task over a
-year's worth of activities. We find that the PI is surprisingly
-cost-effective.
+year's worth of activities. We find that the PI is very
+cost-effective for this example.
 
 However, our most significant gain from this project is the reduction
 in manpower and entry barrier it takes to create and deploy our AI
-services. Due to the generalized approach while using Python function
+services. Due to the generalized approach while using Python functions,
 developers and data scientists can naturally integrate more complex
 tasks as well as tasks that leverage cloud-specific AI services that
-are uniquely offered by particular providers. \censor{GAS Generator} is an
+are uniquely offered by particular providers. GAS is an
 open-source project, and we appreciate contributions to the
 project. Please contact the first author
 at \censor{\textit{laszewski\@gmail.com}}.
@@ -1490,7 +1499,8 @@ at \censor{\textit{laszewski\@gmail.com}}.
 
 \section*{Acknowledgment}
 
-\BLOCKCENSOR{A large section was removed to fulfull double
+\BLOCKCENSOR{A large section recognizing eight additional developers that were
+involved in this effort besides the eight authors of this paper was removed to fulfull double
 blind review conditions.}{We like to thank Brian Kegerreis, Jonathan
 Beckford, Jagadeesh Kandimalla, Prateek Shaw, Ishan Mishra, Fugang
 Wang, and Andrew Goldfarb for developing the Python REST service
@@ -1499,7 +1509,7 @@ Wilson for his contributions to this project. We also like to thank
 the more than 70 contributors to the cloudmesh toolkit for developing
 the various cloud providers. We would like to thank the NBDIF working
 group for their contributions in discussions that lead to the
-development of this effort.} 
+development of this effort.}
 
 
 
